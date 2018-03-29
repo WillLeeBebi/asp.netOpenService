@@ -1,0 +1,246 @@
+
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+a {
+    color:#4F4E50;
+}
+
+nav {
+    width: 100%;
+    height: 30px;
+    background: #000000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+}
+
+    nav .back {
+        color: white;
+        font-size: 1.2rem;
+    }
+
+.placeholder {
+    padding: 0 10px;
+}
+
+.article_banner img {
+    width: 100%;
+    height: 100%;
+}
+
+.article_name {
+    text-align: center;
+    font-family: "黑体";
+}
+
+.article_title {
+    text-align: center;
+    color: dimgray;
+}
+
+.article_price_new {
+    font-size: 1.2rem;
+    color: darkorange;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.article_price_old {
+    font-size: 0.7rem;
+    margin-left: 3px;
+    text-decoration: line-through;
+}
+.process_content_show {
+    display:none;
+}
+.article_buy {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.article_item_title {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    text-decoration: underline;
+}
+
+.placeholder p {
+    color: #737272;
+}
+
+.article_item_msg {
+    background-color: #c5c4c3;
+}
+
+
+.swiper-container {
+    height: 35%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiperstitle {
+    background-color: rgba(0,0,0,0.3);
+    color: white;
+    position: absolute;
+    top: 86%;
+    left: 0;
+    width: 100%;
+    height: 14%;
+    font-size:14px;
+}
+
+.divbottom{
+    padding-bottom: 60px;
+}
+
+.imgcs {
+    height: 70px;
+}
+
+.textcs {
+    text-align: center;
+}
+
+.swimgcs {
+    width: 248px;
+    height: 200px;
+}
+
+.swimgcs1 {
+    width: 140px;
+    height: 80px;
+}
+
+.divmtop {
+    padding-top: 10px;
+}
+
+.panelhd {
+    color: black;
+    font-size: 16px;
+}
+
+.panelhd1 {
+    margin:10px 10px;
+}
+
+.panelhda {
+    float: right;
+    font-size: 14px;
+}
+
+.fontcolor {
+    color: #8e9598;
+}
+
+.swipercs {
+    background-color: white;
+}
+
+.swipertestcs {
+    font-size: 10px;
+}
+
+.boxcs1 {
+    color: #5ad3f0;
+}
+
+.boxcs2 {
+    text-decoration: line-through;
+    color: red;
+    float: right;
+}
+
+.boxcs3 {
+    color: red;
+    float: right;
+    font-size: 18px;
+}
+
+.titltcs {
+    font-size: 18px;
+}
+
+
+.titlecs1 {
+    background-color: #0779ee;
+    color: white;
+}
+
+.titlecs2 {
+    color: #0779ee;
+}
+.leftcs {
+    float: left;
+}
+.rightcs {
+float:right;
+}
+
+.boxdis {
+    display: none;
+}
+
+.weui-cell__bd_title{
+	
+}
+.weui-cell__bd_content{
+	    color: #999999;
+	    font-size: 14px;
+}
+.userwallet_main{
+	margin-left: 20px;
+	margin-top: 20px;
+	font-size: 1.2rem;
+}
+.userwallet_main_q{
+	font-size: 2rem;
+	text-align: center;
+}
+.userwallet_main_y{
+	margin-right: 20px;
+	text-align: right;
+}
+.formdiv{
+	margin-top: 10px;
+}
+.form_title{
+	text-align: center;
+	height: 50px;
+}
+.swiper-container1 {
+    width:100%;
+    overflow:hidden;
+}

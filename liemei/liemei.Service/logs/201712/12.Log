@@ -1,0 +1,4 @@
+09:49:49.3691918 >DEBUG> clearlogs/Start > 日志清理开始
+09:49:51.2504496 >ERROR> http://localhost:47365/Article/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+09:51:36.7479450 >DEBUG> clearlogs/Start > 日志清理开始
+09:51:39.1675618 >ERROR> http://localhost:47365/Article/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis

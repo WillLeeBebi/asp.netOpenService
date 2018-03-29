@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="bnuxq.Model" namespace="bnuxq.Model" default-lazy="true">
+
+  <class name="DResult" table="DResult">
+    <id name="DimensionId">
+      <column name="DimensionId" sql-type="char(32)" not-null="true"/>
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="DimensionName" column="DimensionName" />
+    <property name="ResultID" column="ResultID"/>
+    <property name="Score"   column="Score"   />
+    <property name="LevelName"   column="LevelName"   />
+    <property name="OriginalScore"   column="OriginalScore"   />
+    <property name="AverageScore"   column="AverageScore"   />
+    <property name="AveStaDeviation"   column="AveStaDeviation"   />
+  </class>
+</hibernate-mapping>

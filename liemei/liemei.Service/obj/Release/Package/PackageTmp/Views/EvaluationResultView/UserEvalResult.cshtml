@@ -1,0 +1,29 @@
+﻿@model IList<bnuxq.Model.EvaluationResult>
+@{ 
+    Layout = null;
+}
+@if (Model != null)
+{
+    string datetime = string.Empty;
+    foreach (var er in Model)
+    {
+        if (!er.CreateDate.Equals(datetime))
+        {
+            datetime = er.CreateDate;
+            <div class="weui-cells__title">@(datetime)</div>
+        }
+        <a class="weui-cell weui-cell_access" href="/EvaluationResultView/Index?erid=@(er.ID)">
+            @if (!string.IsNullOrEmpty(er.PsychtestPic))
+            {
+                <div class="weui-cell__hd"><img src="@(er.PsychtestPic)" alt="" style="width:65px;margin-right:10px;display:block"></div>
+            }
+            <div class="weui-cell__bd">
+                <p class="weui-cell__bd_title">@(er.Name)</p>
+                <p class="weui-cell__bd_content">总分：@(er.TotalScore)</p>
+                <p class="weui-cell__bd_content">等级：@(er.TotalLevelName)</p>
+                <p class="weui-cell__bd_content">来源：@(er.EvaluationTypeStr)</p>
+            </div>
+            <div class="weui-cell__ft">点击查看</div>
+        </a>
+    }
+}

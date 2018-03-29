@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A3AD1A43-FC2F-4358-88C6-409D6B693A73}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>bnuxq.Bll</RootNamespace>
+    <AssemblyName>bnuxq.Bll</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0, Version=1.0.5785.21887, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\0.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics.Core, Version=3.17.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.Core.3.17.0\lib\net451\MathNet.Numerics.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="cy_dictBll.cs" />
+    <Compile Include="PayOrderBll.cs" />
+    <Compile Include="UserGroupBll.cs" />
+    <Compile Include="UserInfoBll.cs" />
+    <Compile Include="UserWithdrawalsLogBll.cs" />
+    <Compile Include="WeChatLoginBll.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeChatUserBll.cs" />
+    <Compile Include="WithdrawalsOrderBll.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\bnuxq.Common\liemei.Common.csproj">
+      <Project>{FE463DA6-E520-42D4-881B-33991A03635A}</Project>
+      <Name>liemei.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bnuxq.Dal\liemei.Dal.csproj">
+      <Project>{b315ba5a-5061-4703-91b2-bb834597e318}</Project>
+      <Name>liemei.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bnuxq.Model\liemei.Model.csproj">
+      <Project>{4C76EF04-F288-40EB-96B0-46985ACF0C05}</Project>
+      <Name>liemei.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\0.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

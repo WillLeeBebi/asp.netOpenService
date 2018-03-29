@@ -1,0 +1,39 @@
+﻿@using bnuxq.Model
+@model IList<bnuxq.Model.EvaluationResult>
+
+@{
+    ViewBag.Title = "我的客户";
+    Layout = null;
+    List<UserInfo> userlist = ViewBag.userlist;
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var ar in Model)
+    {
+        var user = userlist.FirstOrDefault(x => x.ID == ar.UserID);
+        string username = string.Empty;
+        string userhand = "http://resources.bnuxq.com:8082/upload/image/head/e2faa707903bdfe706da5a611d176d73.jpeg";
+        if (user != null)
+        {
+            username = user.Name;
+            userhand = user.Headimgurl;
+        }
+
+        <li class="clearfix p-kh-c01">
+            <div href="#" class="p-kh-l"><img src="@userhand" alt=""></div>
+            <div class="p-kh-r clearfix">
+                <p>@ar.Name</p>
+                <div class="p-kh-x-box clearfix">
+                    <ul class="ku-jg">
+                        <li><em>总分:</em><span>@ar.TotalScore</span></li>
+                        <li><em>等级:</em><span>@ar.TotalLevelName</span></li>
+                        <li><span>@ar.EvaluationTypeStr</span></li>
+                    </ul>
+                    <div class="ku-name"><span>@username</span> <em>@ar.CreateDate</em></div>
+                </div>
+            </div>
+            <a href="/EvaluationResultView/Index?erid=@ar.ID" class="p-wzdt-c-btn"></a>
+        </li>
+    }
+}

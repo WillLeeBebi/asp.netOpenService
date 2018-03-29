@@ -1,0 +1,25 @@
+﻿@using bnuxq.Model
+@model IList<UserWithdrawalsLog>
+@{
+    ViewBag.Title = "提现明细";
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+}
+<div class="weui-cells__title">提现明细</div>
+
+
+<div class="weui-cells">
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var log in Model)
+        {
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>提现成功&nbsp;&nbsp;&nbsp;&nbsp;@(log.AMT)</p>
+                </div>
+                <div class="weui-cell__ft">@(log.CreateTime.ToString("yyyy-MM-dd"))</div>
+            </div>
+        }
+    }
+</div>
+
+

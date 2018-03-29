@@ -1,0 +1,122 @@
+﻿@using bnuxq.Model
+@model IList<bnuxq.Model.Article>
+
+@{
+    ViewBag.Title = "我收藏的文章";
+    Layout = "~/Views/Shared/_userLayout.cshtml";
+    List<UserInfo> ulist = ViewBag.ulist;
+}
+<div id="wrapper" class="kh-c-warpp">
+    <div id="scroller">
+        <ul class="p-wzdt-c">
+            @if (Model != null)
+            {
+                foreach (var a in Model)
+                {
+                    UserInfo user = ulist.First(x => x.ID == a.UserID);
+                    <li class="clearfix">
+                        @if (!string.IsNullOrEmpty(a.TitlePic))
+                        {
+                            <div href="#" class="p-wzdt-l">
+                                <img src="@a.TitlePic" alt="">
+                            </div>
+                        }
+                        
+                        <div class="p-wzdt-r clearfix ">
+                            <p>@(a.ArticleTitle)</p>
+                            <div class="p-kwz-x-box clearfix">
+                                <div class="kwz-xx01 grsc-box01">
+                                    <var class="kwz-name">@(user.Name)</var><i class="grsc-pl">@(a.CommentTimes)评论</i>
+                                    <span class="kwz-date">@(a.PublishDate.ToString("yyyy-MM-dd"))</span>
+                                </div>
+                                <div class="kwz-xx02 clearfix grsc-box02">
+                                    <em></em>
+                                    <span>@(a.ArticleTypeStr)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/Article/ArticleInfo?id=@(a.ID)" class="p-wzdt-c-btn"></a>
+                    </li>
+                }
+            }
+
+        </ul>
+        <div id="pullUp">
+            <span class="pullUpIcon pullUpIcon01"></span><span class="pullUpLabel"></span>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="1" name="pageIndex" />
+@section scripts{
+<script type="text/javascript" src="/js/iscroll.js"></script>
+<script type="text/javascript" src="/js/zepto.min.js"></script>
+
+<script>
+    var data,
+        myScroll,
+        // pullDownEl, pullDownOffset,
+        pullUpEl, pullUpOffset,
+        generatedCount = 0;
+    $("#pullUp").hide();
+    function pullDownAction() {
+      
+    }
+
+    function pullUpAction() {
+        var index = Number($('input[name=pageIndex]').val()) + 1;
+
+        $.get("/Article/UserArticleList?pageindex=" + index, function (htmldoc) {
+            if (htmldoc != null && htmldoc != undefined) {
+                $(".p-wzdt-c").append(htmldoc);
+                $('input[name=pageIndex]').val(index)
+                myScroll.refresh();
+            }
+            $("#pullUp").hide();
+        });
+    }
+    //初始化绑定iScroll控件
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    document.addEventListener('DOMContentLoaded', loaded, false);
+
+    function loaded() {
+        pullUpEl = document.getElementById('pullUp');
+        pullUpOffset = pullUpEl.offsetHeight;
+
+        /**
+         * 初始化iScroll控件
+         */
+        myScroll = new iScroll('wrapper', {
+            vScrollbar : false,
+            // topOffset : pullDownOffset,
+            onRefresh : function () {
+                if (pullUpEl.className.match('loading')) {
+                    pullUpEl.className = '';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '';
+                }
+            },
+            onScrollMove: function () {
+
+                 if (this.y < (this.maxScrollY - 10) && !pullUpEl.className.match('flip')) {
+                    pullUpEl.className = 'flip';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
+                    $("#pullUp").show();
+                }
+            },
+            onScrollEnd: function () {
+
+                if (pullUpEl.className.match('flip')) {
+                    pullUpEl.className = 'loading01';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
+                    pullUpAction();
+                }
+            }
+        });
+    }
+</script>
+<script>
+  seajs.use("public",function (app) {
+            app.init()
+        })
+</script>
+    }
+

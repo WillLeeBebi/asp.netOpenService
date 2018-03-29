@@ -1,0 +1,42 @@
+﻿@using bnuxq.Common.common
+@model IList<bnuxq.Model.Psychtest>
+
+@{
+    Layout = null;
+    IDictionary<string, double> testTimeList = ViewBag.testTimeList;
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var ptest in Model)
+    {
+        int times = 0;
+        if (testTimeList != null && testTimeList.ContainsKey(ptest.ID))
+        {
+            times = testTimeList[ptest.ID].TryToInt(0);
+        }
+
+        <div class="weui-panel__bd">
+            <a href="/Psychtest/PsychTestInfo?id=@ptest.ID" class="weui-media-box weui-media-box_appmsg">
+                <div class="weui-media-box__hd">
+                    <img class="weui-media-box__thumb" src="@ptest.PsychtestPic" alt="">
+                </div>
+                <div class="weui-media-box__bd">
+                    <h4 class="weui-media-box__title">@ptest.Name</h4>
+                    <p class="weui-media-box__desc">@ptest.TestAbstract</p>
+                    <span class="boxcs1">@ptest.TestMans 人测试</span>
+                    <span class="boxcs3">￥ @ptest.Price.TryToDouble()</span>
+                    @{
+                        var pi = ptest.Price.TryToDouble() + 52;
+                        <span class="boxcs2">￥ @pi</span>
+
+                    }
+                </div>
+            </a>
+        </div>
+
+                            }
+                        }
+
+
+

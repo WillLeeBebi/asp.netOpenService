@@ -1,0 +1,56 @@
+﻿@using bnuxq.Model
+@using bnuxq.Common.common
+@model IList<bnuxq.Model.PsychtestPyLog>
+@{ 
+    Layout = null;
+    List<UserInfo> userlist = ViewBag.userlist;
+    List<PsychtestBuyLog> pbuylog = ViewBag.pbuylog;
+    List<PsychtestShareLog> pslog = ViewBag.pslog;
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var pplog in Model)
+    {
+        var user = userlist.FirstOrDefault(x => x.ID == pplog.LogUserID);
+
+        switch (pplog.LogType)
+        {
+            case bnuxq.Model.EnumModel.PsychtestPyLogType.Buy:
+                var buy = pbuylog.FirstOrDefault(x => x.ID == pplog.LogID);
+                <li class="clearfix">
+                    <a href="#" class="p-wzdt-l">
+                        <img src="@user.Headimgurl" alt="">
+                    </a>
+                    <div class="p-wzdt-r clearfix">
+                        <p>@(user.Name)购买了你的测评【@(buy.PsychtestName)】</p>
+                        <div class="p-wzdt-btn cp-money">
+                            <var class="wzdt-money">@buy.Money.TryToDouble()</var>&nbsp;<em class="wzdt-money">&yen;</em>
+                            <span class="wzdt-date">@(buy.CreateTime.ToString("yyyy-MM-dd"))</span>
+                        </div>
+                    </div>
+                </li>
+                break;
+            case bnuxq.Model.EnumModel.PsychtestPyLogType.Share:
+                var share = pslog.FirstOrDefault(x => x.ID == pplog.LogID);
+                <li class="clearfix">
+                    <a href="#" class="p-wzdt-l">
+                        <img src="images/wzdt-01.png" alt="">
+                    </a>
+                    <div class="p-wzdt-r clearfix">
+                        <p>@(user.Name)分享了你的测评【@(share.PsychtestName)】</p>
+                        <div class="p-wzdt-btn cp-money">
+                            <span class="wzdt-date">@share.CreateTime.ToString("yyyy-MM-dd")</span>
+                        </div>
+                    </div>
+                </li>
+                break;
+        }
+    }
+}
+else
+{
+    <li class="null-box">
+        <p>暂时没有动态</p>
+    </li>
+}

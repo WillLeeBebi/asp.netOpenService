@@ -1,0 +1,147 @@
+15:41:43.0819012 >DEBUG> clearlogs/Start > 日志清理开始
+15:41:49.0799080 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+15:41:50.0855805 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+15:52:28.3250132 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+15:52:29.3697110 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+15:59:36.6071989 >DEBUG> clearlogs/Start > 日志清理开始
+15:59:38.6865900 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+15:59:39.6882589 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+15:59:40.7049379 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+15:59:41.7116106 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:00:47.6096460 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:00:48.6113148 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:00:54.6933784 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:00:55.6960481 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:02:26.1705062 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:02:27.1721748 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:02:30.9476978 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:02:31.9593737 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:03:16.5191497 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:03:17.5198178 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:03:24.2483152 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:03:25.2589893 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:03:57.1042696 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:03:58.1059381 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:05:26.0226862 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:05:27.0243560 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:05:58.3723029 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:05:59.3729716 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:08:33.5850200 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:08:34.5866889 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:10:44.7266506 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:10:45.7283192 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:11:09.8544417 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:11:10.8551098 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:12:07.5700089 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:12:08.5716775 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:13:40.1878987 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:13:41.1895676 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:14:06.1152242 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:14:07.1178920 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:15:36.7898186 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:15:37.7914871 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:19:33.1707678 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:19:34.1714361 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:20:18.8072627 >DEBUG> clearlogs/Start > 日志清理开始
+16:20:21.2308832 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:20:22.2315524 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:21:17.1002153 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:21:18.1008849 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+16:21:38.0612229 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+16:21:39.0618916 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate

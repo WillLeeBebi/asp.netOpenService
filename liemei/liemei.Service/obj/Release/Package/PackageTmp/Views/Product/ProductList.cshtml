@@ -1,0 +1,28 @@
+﻿@model List<bnuxq.Model.Product>
+
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="row">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <div class="col-xs-6  col-sm-3">
+                <a href="/Product/ProductInfo?id=@Model[i].ID">
+                    <img src="@Model[i].MainPic">
+                </a>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="starter-template">
+        <h3>产品正在完善中,敬请期待........</h3>
+        <p class="lead">联系电话：400-615-2227</p>
+    </div>
+}
+
+

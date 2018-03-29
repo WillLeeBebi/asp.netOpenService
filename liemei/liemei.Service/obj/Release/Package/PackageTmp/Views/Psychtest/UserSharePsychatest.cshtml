@@ -1,0 +1,21 @@
+﻿@using bnuxq.Common.common
+@model IList<bnuxq.Model.Psychtest>
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var p in Model)
+    {
+        <li class="clearfix">
+            <div href="#" class="p-wzdt-l"><img src="@p.PsychtestPic" alt=""></div>
+            <div class="p-wzdt-r clearfix">
+                <p>@p.Name</p>
+                <div class="p-wzdt-btn cp-money"><i></i> <b>@p.TestMans</b> <var class="wzdt-money">&yen;</var>&nbsp;<em class="wzdt-money">@p.Price.TryToDouble()</em> <span class="wzdt-date">@p.CreateTime.ToString("yyyy-MM-dd")</span></div>
+            </div>
+            <a href="/Psychtest/PsychTestInfo?id=@(p.ID)" class="p-wzdt-c-btn"></a>
+        </li>
+    }
+}
+

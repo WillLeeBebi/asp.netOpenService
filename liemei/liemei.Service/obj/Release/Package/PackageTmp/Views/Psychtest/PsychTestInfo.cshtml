@@ -1,0 +1,235 @@
+﻿@using bnuxq.Common.common
+@model bnuxq.Model.Psychtest
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+    string url = string.Format("http://open.bnuxq.com/Psychtest/PsychTestInfo?id={0}&userid={1}", Model.ID, ViewBag.louserid);
+}
+@section cssfile{
+    <link href="~/css/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/iscroll.css">
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/weui.min.css">
+
+}
+<div class="weui-flex">
+    <div class="weui-flex__item article_banner">
+        <div class="placeholder"><img src="@Model.PsychtestPic"></div>
+    </div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item">
+        <div class="placeholder article_name">
+            <h3>@Model.Name</h3>
+        </div>
+    </div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item"><div class="placeholder article_title"><small>@Model.Title</small></div></div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item"><div class="placeholder article_price_new">￥@Model.Price.TryToDouble()<span class="article_price_old">￥@((Model.Price + 52).TryToDouble())</span></div></div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item">
+        <div class="placeholder article_buy">
+            @if (Model.Price > 0)
+            {
+                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" onclick="WeChartBuyPtest('@Model.ID','@ViewBag.userid','@ViewBag.useropenid')">立即购买</a>
+            }
+            else
+            {
+                <a href="/Psychtest/PsychTestStart?isPay=1&id=@(Model.ID)" class="weui-btn weui-btn_mini weui-btn_primary">立即测试</a>
+            }
+
+        </div>
+    </div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item"><div class="placeholder article_item_title"><span>测评介绍</span></div></div>
+</div>
+<div class="weui-flex">
+    <div><div class="placeholder"></div></div>
+    <div class="weui-flex__item">
+        <div class="placeholder">
+            <p>
+                @Model.TestAbstract
+            </p>
+        </div>
+
+    </div>
+    <div><div class="placeholder"></div></div>
+</div>
+<div class="weui-flex">
+    <div><div class="placeholder"></div></div>
+    <div class="weui-flex__item article_item_msg"><div class="placeholder article_item_title"><span>测试须知</span></div></div>
+    <div><div class="placeholder"></div></div>
+</div>
+<div class="weui-flex">
+    <div><div class="placeholder"></div></div>
+    <div class="weui-flex__item article_item_msg">
+        <div class="placeholder">
+            @if (Model.PsychtestType == bnuxq.Model.EnumModel.PsychtestPrTypeEnum.Specialty)
+            {
+                <p>
+                    <i class="weui-icon-info-circle"></i>
+                    本测评为付费测试,体验价为@(Model.Price.TryToDouble())元
+                </p>
+                <p>
+                    <i class="weui-icon-info-circle"></i>
+                    测试题：@(ViewBag.topicCount)题，测试时间：约@(Model.TestTime)分钟
+                </p>
+                <p>
+                    <i class="weui-icon-info-circle"></i>
+
+                    本测评不能重复测试，答题结束后会形成一份专业的测评报告，请您根据自己的实
+                    际情况作答
+                </p>
+                <p>
+                    <i class="weui-icon-info-circle"></i>
+                    由于题目数量较多，在付费成功后，跳转页面可能需要时间进行加载，请耐心等候
+                    （建议在网络较好的情况下进行测试）
+                </p>
+            }
+            else
+            {
+                <p>
+                    <i class="weui-icon-info-circle"></i>
+                    本测评为趣味测评，仅供娱乐，千万别认真，你认真就输了
+                </p>
+            }
+
+        </div>
+
+    </div>
+    <div><div class="placeholder"></div></div>
+</div>
+
+<div class="weui-tab">
+    <div class="weui-tab__panel">
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__hd panelhd"><img src="~/Content/images/rectangles2.png" class="leftcs" />&nbsp;&nbsp;<span class="titltcs">推荐测评</span><a href="/Psychtest/Index" class="panelhda fontcolor">更多测评&nbsp;></a></div>
+            @*@Html.Action("RecommendPsychtestBuy")*@
+            @Html.Action("RecommendPsychtest", "Psychtest", null)
+        </div>
+    </div>
+    </div>
+
+    @*<div class="weui-flex">
+            <div class="weui-flex__item "><div class="placeholder article_item_title"><span>推荐测评</span></div></div>
+        </div>
+        <div class="weui-flex">
+            <div class="weui-flex__item">
+                @Html.Action("RecommendPsychtestBuy")
+            </div>
+        </div>*@
+
+    <input type="hidden" value="@ViewBag.userid" name="userid" />
+    @section scripts{
+        <script type="text/javascript">
+            define = null;
+            require = null;
+        </script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+        @Scripts.Render("~/bundles/wechart")
+        <script type="text/javascript">
+            function GetWeiXinJsapiConfig() {
+                var url = encodeURIComponent(location.href);
+                var link = 'http://open.bnuxq.com/Psychtest/PsychTestInfo?id=@(Model.ID)&userid=@(ViewBag.louserid)'
+                $.get("/WeixinRedirect/jssignature?url=" + url, function (data) {
+                    wx.config({
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: data['appid'], // 必填，公众号的唯一标识
+                        timestamp: data['timestamp'], // 必填，生成签名的时间戳
+                        nonceStr: data['noncestr'], // 必填，生成签名的随机串
+                        signature: data['signature'], // 必填，签名，见附录1
+                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone', 'chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    });
+                    wx.ready(function () {
+                        //分享到朋友圈
+                        wx.onMenuShareTimeline({
+                            title: '@Model.Name', // 分享标题
+                            desc: '@Model.TestAbstract.SubStr(50)', // 分享描述
+                            link: link, // 分享链接
+                            imgUrl: '@Model.PsychtestPic', // 分享图标
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+                                $.get("/Psychtest/PsychTestShare?id=@(Model.ID)&userid=@(ViewBag.userid)");
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                        //分享给朋友
+                        wx.onMenuShareAppMessage({
+                            title: '@Model.Name', // 分享标题
+                            desc: '@Model.TestAbstract.SubStr(50)', // 分享描述
+                            link: link, // 分享链接
+                            imgUrl: '@Model.PsychtestPic', // 分享图标
+                            type: '', // 分享类型,music、video或link，不填默认为link
+                            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+                                $.get("/Psychtest/PsychTestShare?id=@(Model.ID)&userid=@(ViewBag.userid)", function (msg) {
+                                });
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                        //分享到QQ
+                        wx.onMenuShareQQ({
+                            title: '@Model.Name', // 分享标题
+                            desc: '@Model.TestAbstract.SubStr(50)', // 分享描述
+                            link: link, // 分享链接
+                            imgUrl: '@Model.PsychtestPic', // 分享图标
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+                                $.get("/Psychtest/PsychTestShare?id=@(Model.ID)&userid=@(ViewBag.userid)");
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                        //分享到腾讯微博
+                        wx.onMenuShareWeibo({
+                            title: '@Model.Name', // 分享标题
+                            desc: '@Model.TestAbstract.SubStr(50)', // 分享描述
+                            link: link, // 分享链接
+                            imgUrl: '@Model.PsychtestPic', // 分享图标
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+                                $.get("/Psychtest/PsychTestShare?id=@(Model.ID)&userid=@(ViewBag.userid)");
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                        //分享到QQ空间
+                        wx.onMenuShareQZone({
+                            title: '@Model.Name', // 分享标题
+                            desc: '@Model.TestAbstract.SubStr(50)', // 分享描述
+                            link: link, // 分享链接
+                            imgUrl: '@Model.PsychtestPic', // 分享图标
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+                                $.get("/Psychtest/PsychTestShare?id=@(Model.ID)&userid=@(ViewBag.userid)");
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                    });
+                    wx.error(function (res) {
+                        // alert("err" + res);
+                    });
+                });
+            }
+
+            $(function () {
+                GetWeiXinJsapiConfig();
+            });
+        </script>
+    }

@@ -1,0 +1,189 @@
+﻿@using bnuxq.Model
+@model IList<bnuxq.Model.EvaluationResult>
+
+@{
+    ViewBag.Title = "我的客户";
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+    List<UserInfo> userlist = ViewBag.userlist;
+}
+@section cssfile{
+    <link href="~/css/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/iscroll.css">
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/weui.min.css">
+}
+<div class="see-nav" id="see-nav">
+    <ul>
+        
+        <li>
+            <a href="/AdminCore/CustomerList?pageIndex=1&EvaluationTypeID=adbfad8a12564b87bbf502900a09ffc7" class="@(ViewBag.EvaluationTypeID=="adbfad8a12564b87bbf502900a09ffc7" ? "see-ts" : "")">智能击打系统</a>
+        </li>
+        <li>
+            <a href="/AdminCore/CustomerList?pageIndex=1&EvaluationTypeID=b60f031fecd9422f92faacc4f649994b" class="@(ViewBag.EvaluationTypeID=="b60f031fecd9422f92faacc4f649994b" ? "see-ts" : "")">生物反馈系统</a>
+        </li>
+        <li>
+            <a href="/AdminCore/CustomerList?pageIndex=1&EvaluationTypeID=c8e738b521bd47d794590f443cce1351" class="@(ViewBag.EvaluationTypeID=="c8e738b521bd47d794590f443cce1351" ? "see-ts" : "")">智能呐喊系统</a>
+        </li>
+        <li>
+            <a href="/AdminCore/CustomerList?pageIndex=1&EvaluationTypeID=450bd9dfe8f549a8ba5d027ee85c4891" class="@(ViewBag.EvaluationTypeID=="450bd9dfe8f549a8ba5d027ee85c4891" ? "see-ts" : "")">自信心提升系统</a>
+        </li>
+        <li>
+            <a href="/AdminCore/CustomerList?pageIndex=1&EvaluationTypeID=d3a4a95eeaaf4014b82d25a533cf3f7f" class="@(ViewBag.EvaluationTypeID=="d3a4a95eeaaf4014b82d25a533cf3f7f" ? "see-ts" : "")">测评系统</a>
+        </li>
+        <li>
+            <a href="/AdminCore/CustomerList?pageIndex=1&EvaluationTypeID=1" class="@(ViewBag.EvaluationTypeID=="1" ? "see-ts" : "")">智能拥抱系统</a>
+        </li>
+    </ul>
+</div>
+@*<div class="kh-c-box">
+        <div class="seeWrapper-box">
+            <div id="wrapper">
+                <div id="scroller">
+                    <ul class="p-kh-c">
+                        @if (Model != null && Model.Count > 0)
+                        {
+                            foreach (var ar in Model)
+                            {
+                                var user = userlist.FirstOrDefault(x => x.ID == ar.UserID);
+                                string username = string.Empty;
+                                string userhand = "http://resources.bnuxq.com:8082/upload/image/head/e2faa707903bdfe706da5a611d176d73.jpeg";
+                                if (user != null)
+                                {
+                                    username = user.Name;
+                                    userhand = user.Headimgurl;
+                                }
+
+                                <li class="clearfix p-kh-c01">
+                                    <div href="#" class="p-kh-l"><img src="@userhand" alt=""></div>
+                                    <div class="p-kh-r clearfix">
+                                        <p>@ar.Name</p>
+                                        <div class="p-kh-x-box clearfix">
+                                            <ul class="ku-jg">
+                                                <li><em>总分:</em><span>@ar.TotalScore</span></li>
+                                                <li><em>等级:</em><span>@ar.TotalLevelName</span></li>
+                                                <li><span>@ar.EvaluationTypeStr</span></li>
+                                            </ul>
+                                            <div class="ku-name"><span>@username</span> <em>@ar.CreateDate</em></div>
+                                        </div>
+                                    </div>
+                                    <a href="/EvaluationResultView/Index?erid=@ar.ID" class="p-wzdt-c-btn"></a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <div id="pullUp">
+                        <span class="pullUpIcon"></span><span class="pullUpLabel"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>*@
+
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd"><span class="titltcs">智能设备报告</span></div>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var ar in Model)
+        {
+            var user = userlist.FirstOrDefault(x => x.ID == ar.UserID);
+            string username = string.Empty;
+            string userhand = "http://resources.bnuxq.com:8082/upload/image/head/e2faa707903bdfe706da5a611d176d73.jpeg";
+            if (user != null)
+            {
+                username = user.Name;
+                userhand = user.Headimgurl;
+            }
+            <div class="weui-panel__bd">
+                <a href="/EvaluationResultView/Index?erid=@ar.ID" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="@userhand" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">@ar.Name</h4>
+                        <p class="weui-media-box__desc">总分:@ar.TotalScore</p>
+                        <p class="weui-media-box__desc">等级:@ar.TotalLevelName</p>
+                        <p class="weui-media-box__desc">@ar.EvaluationTypeStr</p>
+                        <p class="weui-media-box__desc">总分:@ar.TotalScore</p>
+                        <span class="boxcs1">@username</span>
+                        <span class="fontcolor rightcs">@ar.CreateDate</span>
+                    </div>
+                </a>
+            </div>
+        }
+    }
+</div>
+
+<input type="hidden" value="1" name="pageIndex" />
+@section scripts{
+    <script src="~/js/sea.js" source="widget"></script>
+    <script type="text/javascript" src="/js/iscroll.js"></script>
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+
+    <script>
+        seajs.use("public", function (app) {
+            app.init()
+        })
+    </script>
+
+    @*<script>
+        var data,
+            myScroll,
+            pullUpEl, pullUpOffset,
+            generatedCount = 0;
+        $("#pullUp").hide();
+        function pullDownAction() {
+        }
+
+        function pullUpAction() {
+            var pageIndex = Number($("input[name=pageIndex]").val()) + 1;
+            $.get("/AdminCore/CustomerListV?LockCode=@(ViewBag.LockCode)&pageIndex=" + pageIndex, function (htmldoc) {
+                if (htmldoc != null && htmldoc != undefined) {
+                    $(".p-kh-c").append(htmldoc);
+                    $("input[name=pageIndex]").val(pageIndex)
+                    myScroll.refresh();
+                }
+                $("#pullUp").hide();
+            });
+        }
+
+        //初始化绑定iScroll控件
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+        document.addEventListener('DOMContentLoaded', loaded, false);
+
+        function loaded() {
+            pullUpEl = document.getElementById('pullUp');
+            pullUpOffset = pullUpEl.offsetHeight;
+
+            /**
+             * 初始化iScroll控件
+             */
+            myScroll = new iScroll('wrapper', {
+                vScrollbar: false,
+                onRefresh: function () {
+                    if (pullUpEl.className.match('loading')) {
+                        pullUpEl.className = '';
+                        pullUpEl.querySelector('.pullUpLabel').innerHTML = '';
+                    }
+                },
+                onScrollMove: function () {
+
+                    if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+                        pullUpEl.className = 'flip';
+                        pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
+                        $("#pullUp").show();
+                    }
+                },
+                onScrollEnd: function () {
+
+                    if (pullUpEl.className.match('flip')) {
+                        pullUpEl.className = 'loading01';
+                        pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
+                        pullUpAction();
+                    }
+                }
+            });
+        }
+    </script>*@
+}

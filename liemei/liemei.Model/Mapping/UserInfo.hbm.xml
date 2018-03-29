@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="liemei.Model" namespace="liemei.Model" default-lazy="true">
+
+  <class name="UserInfo" table="UserInfo">
+    <id name="ID">
+      <column name="ID" sql-type="char(32)" not-null="true"/>
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="Name" column="Name" />
+    <property name="UserName" column="UserName"/>
+    <property name="Openid"   column="Openid"   />
+    <property name="Nickname"      column="Nickname"      />
+    <property name="Sex"    column="Sex"    />
+    <property name="BirthDate"    column="BirthDate"    />
+    <property name="Telephone"    column="Telephone"    />
+    <property name="Email"    column="Email"    />
+    <property name="EducationLevel"    column="EducationLevel"    />
+    <property name="IsAdmin"    column="IsAdmin"    />
+    <property name="IsHighestAdmin" column ="IsHighestAdmin" />
+    <property name="IsSystemAdmin"    column="IsSystemAdmin"    />
+    <property name="CreateTime"    column="CreateTime"    />
+    <property name="Headimgurl"    column="Headimgurl"    />
+    <property name="Residence"    column="Residence"    />
+    <property name="province"    column="province"    />
+    <property name="city"    column="city"    />
+    <property name="EnterpriseID"    column="EnterpriseID"    />
+    <property name="GroupID"    column="GroupID"    />
+    <property name="State"    column="State"    />
+    <property name="ConsultantTitle"    column="ConsultantTitle"    />
+    <property name="IDNum"    column="IDNum"    />
+  </class>
+</hibernate-mapping>

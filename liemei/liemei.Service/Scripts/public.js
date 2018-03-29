@@ -1,0 +1,2 @@
+/* public.js Date:2017-04-25 09:05:16 */
+define(["swiper.min.js"],function(require,a,b){require("swiper.min.js");var c={_init:function(){c.banner(),c.seeNav()},banner:function(){new Swiper(".swiper-container",{zoom:!0,autoplay:1500,loop:!0,autoplayStopOnLast:!0})},seeNav:function(){$("#see-nav li").click(function(){$("#see-nav li").find("a").removeClass("see-ts"),$(this).find("a").addClass("see-ts")})}};b.exports={init:c._init}});

@@ -1,0 +1,9 @@
+10:06:08.4757517 >DEBUG> clearlogs/Start > 日志清理开始
+11:19:10.0430529 >DEBUG> clearlogs/Start > 日志清理开始
+11:24:58.4444354 >DEBUG> clearlogs/Start > 日志清理开始
+11:28:27.7096476 >DEBUG> clearlogs/Start > 日志清理开始
+11:47:50.8040849 >DEBUG> clearlogs/Start > 日志清理开始
+11:51:22.4029674 >ERROR> PsychtestUserDal.GetList > An empty parameter-list generates wrong SQL; parameter name 'useridlist',NHibernate
+12:03:15.2222025 >DEBUG> clearlogs/Start > 日志清理开始
+12:04:54.0064061 >ERROR> PsychtestUserDal.GetList > An empty parameter-list generates wrong SQL; parameter name 'useridlist',NHibernate
+12:05:57.3617370 >ERROR> PsychtestUserDal.GetList > An empty parameter-list generates wrong SQL; parameter name 'useridlist',NHibernate

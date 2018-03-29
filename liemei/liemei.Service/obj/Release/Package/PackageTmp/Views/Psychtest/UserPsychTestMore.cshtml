@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_userLayout.cshtml";
+}
+<div id="wzdt-box">
+    <h5 class="p-wzdt-t">@ViewBag.Title</h5>
+    <ul class="p-wzdt-c">
+        @if (ViewBag.type == 1)
+        {
+            @Html.Action("UserCreatePsychatest");
+        }
+        else
+        {
+            @Html.Action("UserSharePsychatest")
+        }
+    </ul>
+</div>
+

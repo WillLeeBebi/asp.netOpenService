@@ -1,0 +1,37 @@
+﻿@using bnuxq.Model
+@model IList<bnuxq.Model.Article>
+
+@{
+    Layout = null;
+    List<UserInfo> ulist = ViewBag.ulist;
+}
+@if (Model != null)
+{
+    foreach (var a in Model)
+    {
+        UserInfo user = ulist.First(x => x.ID == a.UserID);
+        <li class="clearfix">
+            @if (!string.IsNullOrEmpty(a.TitlePic))
+            {
+                <div href="#" class="p-wzdt-l">
+                    <img src="@a.TitlePic" alt="">
+                </div>
+            }
+            
+            <div class="p-wzdt-r clearfix ">
+                <p>@(a.ArticleTitle)</p>
+                <div class="p-kwz-x-box clearfix">
+                    <div class="kwz-xx01 grsc-box01">
+                        <var class="kwz-name">@(user.Name)</var><i class="grsc-pl">@(a.CommentTimes)评论</i>
+                        <span class="kwz-date">@(a.PublishDate.ToString("yyyy-MM-dd"))</span>
+                    </div>
+                    <div class="kwz-xx02 clearfix grsc-box02">
+                        <em></em>
+                        <span>@(a.ArticleTypeStr)</span>
+                    </div>
+                </div>
+            </div>
+            <a href="/Article/ArticleInfo?id=@(a.ID)" class="p-wzdt-c-btn"></a>
+        </li>
+    }
+}

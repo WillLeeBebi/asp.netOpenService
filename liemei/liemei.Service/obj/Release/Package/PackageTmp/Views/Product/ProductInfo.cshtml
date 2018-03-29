@@ -1,0 +1,25 @@
+﻿@model bnuxq.Model.Product
+
+@{
+    ViewBag.Title = "产品详情";
+    Layout = "~/Views/Shared/_weChatLayout.cshtml";
+}
+@if (Model != null)
+{
+    <div class="container body-content">
+       @Html.Raw(Model.DescribeStr)
+    </div>
+}
+else
+{
+    <div class="container">
+
+        <div class="starter-template">
+            <h3>产品正在完善中,敬请期待........</h3>
+            <p class="lead">联系电话：400-615-2227</p>
+        </div>
+
+    </div><!-- /.container -->
+}
+
+

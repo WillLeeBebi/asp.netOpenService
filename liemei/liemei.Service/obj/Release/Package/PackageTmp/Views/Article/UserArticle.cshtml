@@ -1,0 +1,83 @@
+﻿@using bnuxq.Model
+@model IList<bnuxq.Model.Article>
+
+@{
+    ViewBag.Title = "我的文章";
+    Layout = "~/Views/Shared/_userLayout.cshtml";
+    IList<ArticleType> atlist = ViewBag.atlist;
+}
+<div class="see-nav" id="see-nav">
+    <input type="hidden" value="@ViewBag.type" />
+    <ul>
+        @if (ViewBag.type == "" || ViewBag.type==null)
+        {
+            <li>
+                <a href="/Article/UserArticle" class="see-ts">全部</a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="/Article/UserArticle" >全部</a>
+            </li>
+        }
+        @if (atlist != null && atlist.Count > 0)
+        {
+            foreach (var at in atlist)
+            {
+                if (ViewBag.type == at.ID)
+                {
+                    <li>
+                        <a href="/Article/UserArticle?type=@at.ID" class="see-ts">@at.TypeStr</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="/Article/UserArticle?type=@at.ID" >@at.TypeStr</a>
+                    </li>
+                }
+
+            }
+        }
+    </ul>
+</div>
+<div id="kwz-box">
+    <ul class="p-wzdt-c">
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var a in Model)
+            {
+                <li class="clearfix">
+                    @if (!string.IsNullOrEmpty(a.TitlePic))
+                    {
+                        <div href="#" class="p-wzdt-l"><img src="@a.TitlePic" alt=""></div>
+                    }
+                    
+                    <div class="p-wzdt-r clearfix">
+                        <p>@a.ArticleTitle</p>
+                        <div class="p-kwz-x-box clearfix">
+                            <div class="kwz-xx01"><span class="kwz-date">@a.PublishDate.ToString("yyyy-MM-dd")</span></div>
+                            <div class="kwz-xx02 clearfix"><em></em> <span>@a.ShowTimes</span></div>
+                        </div>
+                    </div>
+                    <a href="/Article/ArticleInfo?id=@(a.ID)" class="p-wzdt-c-btn"></a>
+                </li>
+            }
+        }
+        else
+        {
+            <li>
+                <p>您还没有发表过文章</p>
+            </li>
+        }
+    </ul>
+</div>
+@section scripts{
+    <script src="~/js/sea.js" source="widget"></script>
+    <script>
+		seajs.use("public", function(i) {
+			i.init()
+		});
+    </script>
+}

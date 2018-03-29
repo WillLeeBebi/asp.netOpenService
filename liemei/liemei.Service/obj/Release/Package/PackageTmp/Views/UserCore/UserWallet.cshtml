@@ -1,0 +1,53 @@
+﻿@using bnuxq.Common.common
+@{
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+    decimal amt = ViewBag.Amt;
+    decimal withAmt = ViewBag.withAmt;
+    decimal PbuyAmt = ViewBag.PbuyAmt;
+    ViewBag.Title = "个人钱包";
+}
+<div class="weui-flex">
+    <div class="weui-flex__item article_banner">
+        <div>
+            <p class="userwallet_main">账户余额：</p>
+            <p class="userwallet_main_q">@(amt.TryToDouble())元</p>
+            <p class="userwallet_main_y">已提现：@(withAmt.TryToDouble())元</p>
+        </div>
+    </div>
+</div>
+
+<div class="weui-flex">
+    <div class="weui-flex__item article_banner">
+        <div class="weui-cells">
+
+            <a class="weui-cell weui-cell_access" href="/UserCore/IncomeDetail">
+
+                <div class="weui-cell__bd">
+                    <p class="weui-cell__bd_title">测评收入明细（@(PbuyAmt.TryToDouble())元）</p>
+                </div>
+                <div class="weui-cell__ft">点击查看</div>
+            </a>
+            <a class="weui-cell weui-cell_access" href="/UserCore/WithdrawalsLog">
+
+                <div class="weui-cell__bd">
+                    <p class="weui-cell__bd_title">提现明细（@(withAmt.TryToDouble())元）</p>
+                </div>
+                <div class="weui-cell__ft">点击查看</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="weui-flex">
+    <div class="weui-flex__item article_banner">
+        <a href="/UserCore/Withdrawals" class="weui-btn weui-btn_primary">申请提现</a>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $("weui-btn").on("click", function () {
+
+        });
+    </script>
+    }

@@ -1,0 +1,4045 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>bnuxq.Service</name>
+    </assembly>
+    <members>
+        <member name="M:bnuxq.Service.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:bnuxq.Service.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:bnuxq.Service.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:bnuxq.Service.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:bnuxq.Service.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:bnuxq.Service.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:bnuxq.Service.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,bnuxq.Service.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,bnuxq.Service.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:bnuxq.Service.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},bnuxq.Service.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.#ctor(bnuxq.Service.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,bnuxq.Service.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:bnuxq.Service.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bnuxq.Service.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:bnuxq.Service.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.AdminCoreController">
+            <summary>
+            管理中心
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.AdminCoreController.ArticleDyLogList">
+            <summary>
+            文章动态列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.AdminCoreController.PsychtestDyLogList">
+            <summary>
+            测评动态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.AdminCoreController.CustomerList">
+            <summary>
+            客户管理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.AccountController">
+            <summary>
+            用户账户相关接口
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.Token(System.String,System.String)">
+            <summary>
+            登录、根据用户名密码获取令牌
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.Register(bnuxq.Service.Models.ViewModel.UserRegisterViewModel)">
+            <summary>
+            用户注册接口
+            </summary>
+            <param name="userinfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.VerCodePic">
+            <summary>
+            获取验证码，有效时间10分钟
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.SendSmSCode(bnuxq.Service.Models.ViewModel.SendSMSCodeViewModel)">
+            <summary>
+            发送短信接口
+            </summary>
+            <param name="sendSmsCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.CheckSmsCode(System.String,System.String)">
+            <summary>
+            校验短信验证码是否正确
+            </summary>
+            <param name="token"></param>
+            <param name="telcode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.CheckPicCode(bnuxq.Service.Models.ViewModel.CheckPicCodeViewModel)">
+            <summary>
+            校验图片验证码是否正确
+            </summary>
+            <param name="piccode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.IsPerfect">
+            <summary>
+            判断用户信息是否完善
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.PerfectUserMsg(bnuxq.Service.Models.ViewModel.PerfectUserInfoViewModel)">
+            <summary>
+            完善个人信息
+            </summary>
+            <param name="puserinfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.ResetPassword(bnuxq.Service.Models.ViewModel.ResetPasswordViewModel)">
+            <summary>
+            重置密码
+            </summary>
+            <param name="resetPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.ResetPassword01_CheckUserName(System.String)">
+            <summary>
+            找回密码第一步验证用户名返回手机号
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.ExistsTel(System.String)">
+            <summary>
+            校验手机号是否已注册
+            </summary>
+            <param name="tel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.ExistsEmail(System.String)">
+            <summary>
+            校验邮箱是否已注册
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.ExistsUserName(System.String)">
+            <summary>
+            校验用户名是否已注册
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.Userinfo">
+            <summary>
+            获取当前登录用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.BindingWeChartCQ">
+            <summary>
+            获取绑定微信的二维码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.UpdateTelPhone(bnuxq.Service.Models.ViewModel.UpdateTelphone)">
+            <summary>
+            修改用户手机号
+            </summary>
+            <param name="uptel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.AccountController.ChangePassword(bnuxq.Service.Models.ViewModel.ChangePasswordViewModel)">
+            <summary>
+            修改
+            </summary>
+            <param name="cp"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.ArticleController">
+            <summary>
+            文章相关接口
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ArticleController.AritcleList(bnuxq.Service.Models.ViewModel.RequestArticleListViewModel)">
+            <summary>
+            查询文章接口
+            </summary>
+            <param name="ravm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ArticleController.Aritcleinfo(System.String)">
+            <summary>
+            根据文章ID获取文章详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ArticleController.AritcleUser(System.String,System.Int32,System.Int32)">
+            <summary>
+            根据用户ID获取发表的文章信息
+            </summary>
+            <param name="userid"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ArticleController.ArticleLabelList">
+            <summary>
+            获取所有的文章标签
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ArticleController.ArticleType">
+            <summary>
+            获取所有的文章类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ArticleController.ArticlePraise(System.String)">
+            <summary>
+            文章点赞
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ArticleController.ArticleCollertion(bnuxq.Service.Models.ViewModel.ArticleCollertionViewModel)">
+            <summary>
+            收藏文章
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ArticleController.CancelArticleCollertion(System.String)">
+            <summary>
+            取消收藏
+            </summary>
+            <param name="aid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ArticleController.ArticleCollertionTypeReport">
+            <summary>
+            获取用户收藏的文章类型统计信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ArticleController.Addshowtimes(System.String)">
+            <summary>
+            增加浏览次数
+            </summary>
+            <param name="ID"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.ClientAppController">
+            <summary>
+            线下硬件设备App相关接口
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ClientAppController.RegisterClient(bnuxq.Service.Models.ViewModel.PollCodeViewModel)">
+            <summary>
+            app注册接口
+            </summary>
+            <param name="pollcode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ClientAppController.CheckPollCode(bnuxq.Service.Models.ViewModel.PollCodeViewModel)">
+            <summary>
+            验证app注册码
+            </summary>
+            <param name="pollcode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ClientAppController.CreateDogCode(bnuxq.Service.Models.ViewModel.ClientApp.createdogViewModel)">
+            <summary>
+            创建加密锁
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ClientAppController.RegisterDogCode(bnuxq.Service.Models.ViewModel.ClientApp.RegisterDogCodeViewModel)">
+            <summary>
+            线下客户端注册加密锁接口
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ClientAppController.CheckDogCode(bnuxq.Service.Models.ViewModel.ClientApp.CheckDogCodeViewModel)">
+            <summary>
+            校验加密锁是否合法
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.ClientUpdateController">
+            <summary>
+            客户端更新
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ClientUpdateController.Get(System.String)">
+            <summary>
+            根据当前版本号获取最新版本信息
+            </summary>
+            <param name="versionCode"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.ClientUpdateLogController">
+            <summary>
+            客户端软件更新日志
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.ClientUserinfoLoginController">
+            <summary>
+            用户登录（用户名，密码）
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ClientWeChatLoginAPIController.Get(System.String)">
+            <summary>
+            线下客户端获取微信登录二维码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.ClientWeChatLoginStateController">
+            <summary>
+            客户端查看微信用户扫码登录状态的接口
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.DistrictInfoController.GetAllProvince">
+            <summary>
+            获取所有的省份
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.EvaluationResultController.Post(bnuxq.Model.EvaluationResult)">
+            <summary>
+            提交测评结果
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.EvaluationTypeController">
+            <summary>
+            测评类型
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.FileDownAPIController.GetPsychtest(System.String,System.String)">
+            <summary>
+            测评下载接口
+            </summary>
+            <param name="id"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.FileDownAPIController.EvaluationResult(System.String,System.String)">
+            <summary>
+            测评报告下载接口
+            </summary>
+            <param name="id"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.FileDownAPIController.GroupReport(System.String,System.String)">
+            <summary>
+            根据团体报告ID和用户令牌下载团体报告
+            </summary>
+            <param name="id"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.FileUploadAPIController">
+            <summary>
+            文件上传接口
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:bnuxq.Service.Controllers.API.NewsMessagesController" -->
+        <!-- Badly formed XML comment ignored for member "M:bnuxq.Service.Controllers.API.NewsMessagesController.newsmsginfo(System.String)" -->
+        <member name="T:bnuxq.Service.Controllers.API.PayController">
+            <summary>
+            统一在线支付接口
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.PayController.Post(bnuxq.Service.Models.UnifiedOrder)">
+            <summary>
+            统一下单接口
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.PayController.Get(System.String)">
+            <summary>
+            微信公共号内调用支付接口的签名
+            </summary>
+            <param name="prepay_id">统一下单接口返回的微信平台ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.PayController.QueryPayState(System.String)">
+            <summary>
+            查询支付状态
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.ProductController">
+            <summary>
+            产品相关接口
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ProductController.productinfo(System.String)">
+            <summary>
+            根据产品ID获取产品信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ProductController.list(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            根据产品类型分页获取产品
+            </summary>
+            <param name="ProductStyle">0.硬件产品；1.软件产品</param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ProductController.tlist(System.String,System.Int32,System.Int32)">
+            <summary>
+            根据产品类型获取产品
+            </summary>
+            <param name="ProductTypeID"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.ProductController.typelist">
+            <summary>
+            获取产品类型列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.psychtestController">
+            <summary>
+            测评相关接口
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetNoFinishUser(System.String,System.Int32,System.Int32)">
+            <summary>
+            根据测评分配日志ID获取未完成的人员信息
+            </summary>
+            <param name="PsyallocationLogID">测评分配日志ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetFinishUser(System.String,System.Int32,System.Int32)">
+            <summary>
+            根据测评分配日志获取已完成的报告信息
+            </summary>
+            <param name="PsyallocationLogID">测评分配日志</param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetPsytestBaseReport(System.String)">
+            <summary>
+            根据测评报告ID获取测评报告基础信息
+            </summary>
+            <param name="id">测评报告ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetPsytestDResultScoreList(System.String)">
+            <summary>
+            根据测评报告ID获取各维度数据列表
+            </summary>
+            <param name="id">测评报告ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetGroupReportViewModel(System.Collections.Generic.IList{System.String})">
+            <summary>
+            根据多个测评报告ID生成团体报告
+            </summary>
+            <param name="EvaluationResultIDs">测评报告ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetClientReportViewModel(bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportQueryViewModel)">
+            <summary>
+            根据类型ID获取硬件设备结果报告
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.PsyList(System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,bnuxq.Model.EnumModel.PsychtestPrTypeEnum)">
+            <summary>
+            根据关键词、分类ID、价格范围等查询测评信息
+            </summary>
+            <param name="keywords">关键词</param>
+            <param name="PsychtestTypeID">分类ID</param>
+            <param name="minPrice">最低价格</param>
+            <param name="maxPrice">最高价格</param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.PsyByID(System.String)">
+            <summary>
+            根据测评ID获取测评详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.PsychtestTopic(System.String)">
+            <summary>
+            根据测评ID获取所有的题目
+            </summary>
+            <param name="psyid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.OptionByTopicID(System.String)">
+            <summary>
+            根据题目ID获取题目下的选项
+            </summary>
+            <param name="topicid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.OptionByPsyID(System.String)">
+            <summary>
+            根据测评ID获取所有的选项
+            </summary>
+            <param name="psyid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetRecommendPsytest">
+            <summary>
+            获取推荐的测评
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetSpecialtyByType(System.String)">
+            <summary>
+            根据测评类型ID获取测评列表
+            </summary>
+            <param name="PsychtestTypeID">测评类型ID</param>
+            <returns>测评列表</returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetSurvey">
+            <summary>
+            获取用户创建的调研问卷
+            </summary>
+            <returns>调研问卷列表</returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.DistributionPsytest(bnuxq.Service.Models.ViewModel.PsytestVM.DistributionPsytestViewModel)">
+            <summary>
+            单独给一个被侧者分配测评
+            </summary>
+            <param name="vm">分配的测评</param>
+            <returns>结果</returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.DistributionBatchPsytest(bnuxq.Service.Models.ViewModel.PsytestVM.DistributionBatchPsytestViewModel)">
+            <summary>
+            向批量创建的用户分配测评
+            </summary>
+            <param name="vmlist">分配的测评</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetDisPsytest(bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel)">
+            <summary>
+            获取已分配测评接口
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetUserPsychtest(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            根据用户ID获取分配给用户的测评信息
+            </summary>
+            <param name="userid"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="isFinish">是否已完成</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetPsychtestComment(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取心理测评的评论
+            </summary>
+            <param name="aid">测评ID或者评论ID</param>
+            <param name="pageIndex">页码</param>
+            <param name="pageSize">每页条数</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.AddPsychtestComment(bnuxq.Service.Models.ViewModel.PsytestVM.AddCommentViewModel)">
+            <summary>
+            添加评论
+            </summary>
+            <param name="cm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.AddPraiseTimes(System.String)">
+            <summary>
+            评论点赞
+            </summary>
+            <param name="id">评论ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.AddShowTimes(System.String)">
+            <summary>
+            增加浏览次数
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.SavePsychtestUserOption(bnuxq.Service.Models.ViewModel.PsytestVM.SavePsyUserOptionViewModel)">
+            <summary>
+            提交测评答案
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.PsychtestStart(System.String,System.String)">
+            <summary>
+            测评中心开始做测评
+            </summary>
+            <param name="psyid"></param>
+            <param name="payid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.PsychtestUserEnd(System.String)">
+            <summary>
+            结束测试生成测评报告
+            </summary>
+            <param name="ptestUserid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.psychtestController.GetGroupReportViewModelKey(System.Collections.Generic.IList{System.String})">
+            <summary>
+            根据多个测评报告ID生成团体报告的Key
+            </summary>
+            <param name="EvaluationResultIDs"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.RegisterUserInfoController">
+            <summary>
+            用户注册接口
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.ShareAPIController">
+            <summary>
+            分享统一接口
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.UserConsoleController">
+            <summary>
+            用户控制台
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.UserMessage">
+            <summary>
+            用户信息接口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.UserNoFinishPsychtest(System.Int32,System.Int32)">
+            <summary>
+            用户未完成测评
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.UserCreatePsychtest(System.Int32,System.Int32)">
+            <summary>
+            用户创建的测评
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.UserSubmitPsychtest(System.String)">
+            <summary>
+            用户提交测评到审核中状态
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.UserSharePsychtest(System.Int32,System.Int32)">
+            <summary>
+            用户分享的测评
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.UserAllocationPsychtest(System.Int32,System.Int32)">
+            <summary>
+            管理员分配的测评
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.UserArticle(System.Int32,System.Int32)">
+            <summary>
+            用户发表的文章
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.ArticleCollection(System.Int32,System.Int32,System.String)">
+            <summary>
+            用户收藏的文章
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.evaluationresult(System.Int32,System.Int32)">
+            <summary>
+            用户的测评报告【测评结果】
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.IncomeDetail(System.Int32,System.Int32)">
+            <summary>
+            用户收入明细
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.PbuyAmt">
+            <summary>
+            用户总收入
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.withAmt">
+            <summary>
+            用户提现总金额
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.WithderwalsLog(System.DateTime,System.DateTime,System.Int32,System.Int32)">
+            <summary>
+            用户提现记录
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.AllNotice(System.Int32,System.Int32)">
+            <summary>
+            获取用户所有相关通知
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.NoticeByID(System.String)">
+            <summary>
+            根据通知ID获取通知信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.NoticePsychtest(System.Int32,System.Int32)">
+            <summary>
+            获取完成测评相关的通知
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.PsychtestDyLogList(System.Int32)">
+            <summary>
+            用户最近10条测评动态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.ArticleDyLogList(System.Int32,System.Int32)">
+            <summary>
+            文章动态
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.RemindUser(bnuxq.Service.Models.ViewModel.RemindUserPsyViewModel)">
+            <summary>
+            提醒做测评
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.UserOption(bnuxq.Service.Models.ViewModel.Console.UserOptionViewModel)">
+            <summary>
+            用户做测试，提交用户选项答案
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.getAccSecurity">
+            <summary>
+            获取用户账户安全度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserConsoleController.getUserMsgRat">
+            <summary>
+            获取用户资料完善度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.UserInfoController">
+            <summary>
+            用户相关接口
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.CreateAdminUser(bnuxq.Service.Models.ViewModel.UserInfoVM.CreateAdminUserViewModel)">
+            <summary>
+            创建管理员
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.AddUserJurisdiction(bnuxq.Service.Models.ViewModel.SetUserJurisdictionViewModel)">
+            <summary>
+            添加用户权限
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.GetUserJurisdiction(System.String)">
+            <summary>
+            获取用户权限
+            </summary>
+            <param name="userid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.GetAdminUserList">
+            <summary>
+            获取管理员信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.GetUserByID(System.String)">
+            <summary>
+            根据用户ID获取用户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.UserManager(bnuxq.Model.UserManagerSelect)">
+            <summary>
+            普通用户信息管理
+            </summary>
+            <param name="vmselect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.CreateGroup(System.String)">
+            <summary>
+            创建分组
+            </summary>
+            <param name="groupname"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.GetGroup">
+            <summary>
+            获取管理员所属下级分组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.GetGroupBySuID(System.String)">
+            <summary>
+            根据分组ID获取下级分组信息
+            </summary>
+            <param name="PGroupID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.GetGroupByID(System.String)">
+            <summary>
+            根据分组ID获取分组的详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.CreateUser(bnuxq.Service.Models.ViewModel.UserInfoVM.CreateUserViewModel)">
+            <summary>
+            创建被测账户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.BatchCreateUser(bnuxq.Service.Models.ViewModel.UserInfoVM.BatchCreateUserViewModel)">
+            <summary>
+            批量创建普通用户
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.UploadUser(bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserViewModel)">
+            <summary>
+            解析上传的用户信息
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.GetUploadUser(System.Int32,System.Int32)">
+            <summary>
+            获取解析出的用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.RegisterUploadUser(bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserMessageViewModel)">
+            <summary>
+            注册解析出来的用户信息
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.DeleteUser(System.String)">
+            <summary>
+            删除用户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.API.UserInfoController.EdityUserinfo(bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel)">
+            <summary>
+            修改当前用户信息
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.API.UserLockCodeController">
+            <summary>
+            提交用户加密锁
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.WeChartPayCallBackController">
+            <summary>
+            微信支付回调接口
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.WeChartPayCallBackController.QueryOrder(System.String)">
+            <summary>
+            查询订单
+            </summary>
+            <param name="transaction_id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.ArticleController">
+            <summary>
+            心理文章
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.ArticleController.ArticlePraise">
+            <summary>
+            文章点赞
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.ArticleController.ArticleCollertion">
+            <summary>
+            文章收藏
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.ArticleController.ArticleShare">
+            <summary>
+            文章分享
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.ArticleController.UserArticle">
+            <summary>
+            我的文章--根据当前用户获取发表的文章信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.ArticleController.UserArticleCollertion">
+            <summary>
+            用户收藏的文章
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.ArticleController.RecommendArticle">
+            <summary>
+            推荐文章列表
+            推荐机制：
+            1、点赞数最多的4个
+            2、浏览数最多的4个
+            3、评论数最多的4个
+            4、最新的4个
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.ArticleController.GetUsersByArticle(System.Collections.Generic.IList{bnuxq.Model.Article})">
+            <summary>
+            根据文章列表获取作者列表
+            </summary>
+            <param name="alist"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.EvaluationResultViewController">
+            <summary>
+            测评结果展示
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.EvaluationResultViewController.Index(System.String)">
+            <summary>
+            测评结果详情页
+            </summary>
+            <param name="erid">测评结果ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.EvaluationResultViewController.UserEvalResult(System.Int32)">
+            <summary>
+            用户测评结果展示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.ProductController.Index(System.Int32)">
+            <summary>
+            产品展示页面
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.ProductController.ProductList(System.Int32)">
+            <summary>
+            产品列表
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.ProductController.ProductInfo(System.String)">
+            <summary>
+            产品详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.PsychtestController.UserCreatePsychatest(System.Int32)">
+            <summary>
+            用户创建的测评
+            </summary>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.PsychtestController.UserSharePsychatest(System.Int32)">
+            <summary>
+            用户分享的测评
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.PsychtestController.RecommendPsychtest">
+            <summary>
+            推荐测评列表
+            推荐机制：
+            1.测试次数最多4个
+            2.点赞次数最多4个
+            3.最新的4个
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.PsychtestController.PsychTestPayState">
+            <summary>
+            获取用户购买测评的支付状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.PsychtestController.PsychTestprocess">
+            <summary>
+            测评过程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.PsychtestController.PsychtestUserEnd">
+            <summary>
+            完成测评
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.Controllers.UserCoreController">
+            <summary>
+            个人中心
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.UserCoreController.Index">
+            <summary>
+            个人中心
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.UserCoreController.UserWallet">
+            <summary>
+            个人钱包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.UserCoreController.UserPsychtest">
+            <summary>
+            我的测评
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.UserCoreController.Withdrawals">
+            <summary>
+            提现
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.WeChatLoginCallBackController.Index(System.String,System.String)">
+            <summary>
+            用户扫码授权回调
+            </summary>
+            <param name="code"></param>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.WeChatLoginCallBackController.getUserinfo(System.String,System.String)">
+            <summary>
+            用户确认授权
+            </summary>
+            <param name="code"></param>
+            <param name="state"></param>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.WeChatLoginCallBackController.SaveNoUserinfo(System.String)">
+            <summary>
+            用户拒绝授权给客户端发送通知
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.WeChatSigController.GET(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            用户消息和开发者需要的事件推送
+            </summary>
+            <param name="signature"></param>
+            <param name="token"></param>
+            <param name="timestamp"></param>
+            <param name="nonce"></param>
+            <param name="echostr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Controllers.WeixinRedirectController.jssignature">
+            <summary>
+            微信公共号H5页面js签名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:bnuxq.Service.Filters.ApiActionFilterAttribute.Signpara">
+            <summary>
+            签名参数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Filters.ApiActionFilterAttribute.IsUrlDecode">
+            <summary>
+            是否解码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Filters.ApiActionFilterAttribute.Jurisdiction">
+            <summary>
+            所需权限
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Filters.ApiActionFilterAttribute.IsLogin">
+            <summary>
+            是否登录
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Filters.ApiActionFilterAttribute.TimeOut">
+            <summary>
+            缓存超时时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Filters.CustomAuthenticationFilter.IsUrlDecode">
+            <summary>
+            是否解码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Filters.CustomAuthenticationFilter.TimeOut">
+            <summary>
+            缓存超时时间
+            </summary>
+        </member>
+        <member name="F:bnuxq.Service.Filters.ClientEnum.NoCheck">
+            <summary>
+            不检查客户端
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.JobService.BaseJob.OneHour">
+            <summary>
+            1小时
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.JobService.BaseJob.OneMinute">
+            <summary>
+            1分钟
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.JobService.ClearQCPicJob">
+            <summary>
+            定期删除昨天的微信扫码二维码图片文件
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ApiUserManager.User">
+            <summary>
+            当前用户
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Models.ApiUserManager.ExistsLogin">
+            <summary>
+            用户是否已经登录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Models.ApiUserManager.GetUserToken(bnuxq.Model.UserInfo)">
+            <summary>
+            用户登录返回令牌
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.Models.ApiUserManager.RefreshUser">
+            <summary>
+            刷新当前用户信息【修改用户信息后刷新用户信息到缓存中】
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.BaseApiController.User">
+            <summary>
+            当前登录用户
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.BaseController.RSession">
+            <summary>
+            当前session
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.BaseController.User">
+            <summary>
+            当前用户
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Models.CacheKey.GetQrCodeKey(System.DateTime)">
+            <summary>
+            获取微信登录二维码图片缓存KEY
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="F:bnuxq.Service.Models.RedisSession`1.SessionName">
+            <summary>
+             SessionId标识符
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Models.RedisSession`1.GetSessionID">
+            <summary>
+             获取SessionID
+            </summary>
+            <param name="key">SessionId标识符</param>
+            <returns>HttpCookie值</returns>
+        </member>
+        <member name="M:bnuxq.Service.Models.RedisSession`1.RemoveAll">
+            <summary>
+            从会话状态集合中移除所有的键和值。
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.RedisSessionStateStore">
+            <summary>
+            使用Cookie实现SessionStateStoreProviderBase
+            注意：它只适合保存简单的基元类型数据。
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.Models.RedisSessionState.IsValueType(System.Type)">
+            <summary>
+            判断是否为值类型
+            </summary>
+            <param name="type">Type</param>
+            <returns></returns>
+        </member>
+        <member name="P:bnuxq.Service.Models.UnifiedOrder.PayTyp">
+            <summary>
+            1.微信；2.支付宝
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.UnifiedOrder.product_id">
+            <summary>
+            商品ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.UnifiedOrder.productType">
+            <summary>
+            商品类型：1.测评
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.UnifiedOrder.trade_type">
+            <summary>
+            支付类型:JSAPI，NATIVE，APP
+            JSAPI：微信公共号内发起支付
+            NATIVE：生成二维码，扫码支付
+            APP：手机app内发起微信支付
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.UnifiedOrder.openid">
+            <summary>
+            客户openid，如果为微信公共号发起支付，openid必须有
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.UnifiedOrder.userid">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.ArticleCollertionViewModel">
+            <summary>
+            收藏文章
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleCollertionViewModel.ID">
+            <summary>
+            文章ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleCollertionViewModel.type">
+            <summary>
+            操作类型：1.收藏；0.取消收藏
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleDyLogViewModel.ArticleID">
+            <summary>
+            文章ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleDyLogViewModel.ArticleTitle">
+            <summary>
+            文章标题
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleDyLogViewModel.LogType">
+            <summary>
+            动态类型
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleDyLogViewModel.AuthorID">
+            <summary>
+            作者ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleDyLogViewModel.UserID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleDyLogViewModel.UserName">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleDyLogViewModel.CommentID">
+            <summary>
+            文章评论ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleDyLogViewModel.RewardID">
+            <summary>
+            文章打赏ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleDyLogViewModel.CreateTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleDyLogViewModel.LogContent">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleListViewModel.UserID">
+            <summary>
+            作者ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleListViewModel.UserName">
+            <summary>
+            作者名字
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleListViewModel.ShowTimes">
+            <summary>
+            浏览次数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleListViewModel.PraiseTimes">
+            <summary>
+            点赞数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleListViewModel.CommentTimes">
+            <summary>
+            评论数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleListViewModel.CollectionTimes">
+            <summary>
+            收藏数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleListViewModel.ArticleTypeID">
+            <summary>
+            文章类型
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleListViewModel.IsPraise">
+            <summary>
+            是否点赞过
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleListViewModel.IsCollection">
+            <summary>
+            是否收藏过
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel">
+            <summary>
+            文章详情
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.ID">
+            <summary>
+            文章ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.ArticleTitle">
+            <summary>
+            文章标题
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.PublishDate">
+            <summary>
+            发表日期
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.ShowTimes">
+            <summary>
+            被查看次数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.PraiseTimes">
+            <summary>
+            点赞次数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.CommentTimes">
+            <summary>
+            评论数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.CollectionTimes">
+            <summary>
+            收藏数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.UserID">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.UserName">
+            <summary>
+            作者名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.TitlePic">
+            <summary>
+            标题上的图片
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.ArticleTypeID">
+            <summary>
+            文章类型ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.ArticleTypeStr">
+            <summary>
+            文章类型
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.ArticleLables">
+            <summary>
+            文章标签
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ArticleVM.ArticleViewModel.IsCollection">
+            <summary>
+            是否收藏
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.ChangePasswordViewModel">
+            <summary>
+            修改密码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ChangePasswordViewModel.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ChangePasswordViewModel.RPassword">
+            <summary>
+            确认密码
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.ClientApp.CheckDogCodeViewModel">
+            <summary>
+            校验加密锁
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.CheckDogCodeViewModel.DogCode">
+            <summary>
+            加密狗编号
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.CheckDogCodeViewModel.MacAddress">
+            <summary>
+            MAC地址
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.CheckDogCodeViewModel.DiskID">
+            <summary>
+            硬盘序列号
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.CheckDogCodeViewModel.Key">
+            <summary>
+            秘钥
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.ClientApp.createdogViewModel">
+            <summary>
+            创建加密狗
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.createdogViewModel.DogCode">
+            <summary>
+            加密狗编号
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.createdogViewModel.RegistContent">
+            <summary>
+            对应注册的内容
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.createdogViewModel.DogType">
+            <summary>
+            加密狗类型
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.createdogViewModel.IsCheckHardware">
+            <summary>
+            是否校验硬件
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.createdogViewModel.EnterpriseName">
+            <summary>
+            使用加密锁的企业名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.createdogViewModel.TermOfValidity">
+            <summary>
+            有效期
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.ClientApp.RegisterDogCodeViewModel">
+            <summary>
+            客户端加密狗注册
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.RegisterDogCodeViewModel.DogCode">
+            <summary>
+            加密狗编号
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.RegisterDogCodeViewModel.EnterpriseName">
+            <summary>
+            注册企业名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.RegisterDogCodeViewModel.MacAddress">
+            <summary>
+            MAC地址
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.RegisterDogCodeViewModel.DiskID">
+            <summary>
+            硬盘序列号
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ClientApp.RegisterDogCodeViewModel.Key">
+            <summary>
+            秘钥
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.PsychtestShareLogViewModel.TestMan">
+            <summary>
+            测试人数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.PsychtestShareLogViewModel.UnitPrice">
+            <summary>
+            单价
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.PsychtestShareLogViewModel.Profit">
+            <summary>
+            收益
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.PsychtestShareLogViewModel.PsychtestType">
+            <summary>
+            测试类型
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.ArticleTitle">
+            <summary>
+            文章标题
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.PublishDate">
+            <summary>
+            发表日期
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.ShowTimes">
+            <summary>
+            被查看次数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.PraiseTimes">
+            <summary>
+            点赞次数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.CommentTimes">
+            <summary>
+            评论数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.CollectionTimes">
+            <summary>
+            收藏数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.UserID">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.UserName">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.AricleState">
+            <summary>
+            文章状态0.未审核；1.已审核；-1.审核未通过
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.AricleStateStr">
+            <summary>
+            文章状态说明
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.AuditorName">
+            <summary>
+            审核人
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.AuditorTime">
+            <summary>
+            审核时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.TitlePic">
+            <summary>
+            标题上的图片
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.Content">
+            <summary>
+            内容简介
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.ArticleTypeID">
+            <summary>
+            文章类型ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.Lables">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserArticleViewModel.QrCodePic">
+            <summary>
+            分享二维码
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.Console.UserCreatePsychtestViewModel">
+            <summary>
+            用户创建的测评
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserCreatePsychtestViewModel.PsyTestID">
+            <summary>
+            测评ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserCreatePsychtestViewModel.Price">
+            <summary>
+            价格
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserCreatePsychtestViewModel.TestMans">
+            <summary>
+            测试人数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserCreatePsychtestViewModel.Profit">
+            <summary>
+            收益
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserCreatePsychtestViewModel.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserCreatePsychtestViewModel.QrCodePic">
+            <summary>
+            分享二维码
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.Console.UserOptionViewModel">
+            <summary>
+            提交用户选择的答案
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserOptionViewModel.PsychtestUserID">
+            <summary>
+            测评记录ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserOptionViewModel.PsychtestTopicID">
+            <summary>
+            选项题ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.Console.UserOptionViewModel.OptionNumber">
+            <summary>
+            选项编号选项编号（A、B || 1、2）
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserAllocationPsyViewModel">
+            <summary>
+            管理员分配的测评
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserAllocationPsyViewModel.PsychtestID">
+            <summary>
+            测评ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserAllocationPsyViewModel.PsychtestName">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserAllocationPsyViewModel.AllocationTime">
+            <summary>
+            测评分配时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserAllocationPsyViewModel.FinishCount">
+            <summary>
+            已完成数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserAllocationPsyViewModel.NoFinishCount">
+            <summary>
+            未完成数
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserMessageViewModel">
+            <summary>
+            控制台用户信息
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserMessageViewModel.Name">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserMessageViewModel.AccSecurity">
+            <summary>
+            账户安全度
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserMessageViewModel.UserMsgRat">
+            <summary>
+            个人信息完善度
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserMessageViewModel.IsWeChat">
+            <summary>
+            微信是否绑定
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserMessageViewModel.UserRole">
+            <summary>
+            用户角色【勋章】
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserMessageViewModel.Headimgurl">
+            <summary>
+            用户头像
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserNoFinishPsychtestListViewModel">
+            <summary>
+            用户未完成测评列表
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserNoFinishPsychtestListViewModel.ID">
+            <summary>
+            测评记录ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserNoFinishPsychtestListViewModel.PsyID">
+            <summary>
+            测评ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserNoFinishPsychtestListViewModel.PsychtestName">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserNoFinishPsychtestListViewModel.PsychtestTitle">
+            <summary>
+            测评标题
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserNoFinishPsychtestListViewModel.PData">
+            <summary>
+            分配时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserNoFinishPsychtestListViewModel.PsychTypeStr">
+            <summary>
+            测评类型
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserNoFinishPsychtestListViewModel.PsychtestSource">
+            <summary>
+            测评来源
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserNoFinishPsychtestListViewModel.PsychtestTopicCount">
+            <summary>
+            测评题目数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserNoFinishPsychtestListViewModel.TestTime">
+            <summary>
+            测评时长
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.EvaluationResultViewModel.Name">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.EvaluationResultViewModel.UserID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.EvaluationResultViewModel.EvaluationTypeStr">
+            <summary>
+            测评类型
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.EvaluationResultViewModel.TotalScore">
+            <summary>
+            测评总得分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.EvaluationResultViewModel.TotalLevelName">
+            <summary>
+            测评等级
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.EvaluationResultViewModel.PsychtestPic">
+            <summary>
+            测评图片
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.EvaluationResultViewModel.PsychtestSource">
+            <summary>
+            测评来源
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.EvaluationResultViewModel.QrCodePic">
+            <summary>
+            分享二维码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.FinishUserViewModel.EvaluationResultID">
+            <summary>
+            测评报告ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.FinishUserViewModel.TotalScore">
+            <summary>
+            测评总得分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.FinishUserViewModel.TotalLevelName">
+            <summary>
+            测评等级
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.FinishUserViewModel.SurplusCount">
+            <summary>
+            剩余待完成测评数量
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.NoFinishUser.PsyallocationLogID">
+            <summary>
+            测评分配日志ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.NoFinishUser.PsychtestID">
+            <summary>
+            测评ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.NoFinishUser.PsychtestName">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.NoFinishUser.CreateTime">
+            <summary>
+            测评分配时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.NoFinishUser.SurplusCount">
+            <summary>
+            剩余待完成测评数量
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PerfectUserInfoViewModel">
+            <summary>
+            完善个人信息
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PerfectUserInfoViewModel.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PerfectUserInfoViewModel.BirthDate">
+            <summary>
+            出生日期
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PerfectUserInfoViewModel.EducationLevel">
+            <summary>
+            教育水平
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PerfectUserInfoViewModel.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PerfectUserInfoViewModel.Residence">
+            <summary>
+            居住地
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PerfectUserInfoViewModel.province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PerfectUserInfoViewModel.city">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PollCodeViewModel.UUID">
+            <summary>
+            设备唯一序列号
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PollCodeViewModel.PollCode">
+            <summary>
+            注册码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PollCodeViewModel.AppType">
+            <summary>
+            客户端类型
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestBuyLogVieModel.PsychtestID">
+            <summary>
+            测评ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestBuyLogVieModel.PsychtestName">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestBuyLogVieModel.PsychtestUserID">
+            <summary>
+            测评所有者ID
+            注：测评所有者指创建测评的人或者分享测评的人
+            如果通过分享测评的人购买的测评，则所有者为分享测评的人.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestBuyLogVieModel.UserID">
+            <summary>
+            购买者ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestBuyLogVieModel.UserName">
+            <summary>
+            购买者名字
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestBuyLogVieModel.Money">
+            <summary>
+            收益
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestBuyLogVieModel.Price">
+            <summary>
+            单价
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestBuyLogVieModel.CreateTime">
+            <summary>
+            购买时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestBuyLogVieModel.PayOrderID">
+            <summary>
+            支付订单ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestListViewModel.TestMans">
+            <summary>
+            测试人数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestListViewModel.TopicCount">
+            <summary>
+            题目数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestListViewModel.TestAbstract">
+            <summary>
+            测评简介
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestListViewModel.PsychtestTypeStr">
+            <summary>
+            测评类型
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestPyLogViewModel.PsychtestID">
+            <summary>
+            测评ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestPyLogViewModel.PsychtestUserID">
+            <summary>
+            测评所有者ID
+            注：所有者指测评的作者或者分享该测评的人，别人通过此人的分享进入这个测评.
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestPyLogViewModel.LogUserID">
+            <summary>
+            测评动态日志用户ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsychtestPyLogViewModel.LogID">
+            <summary>
+            日志ID
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.AddCommentViewModel">
+            <summary>
+            添加评论
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.AddCommentViewModel.Comment">
+            <summary>
+            评论内容
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.AddCommentViewModel.ID">
+            <summary>
+            文章ID或者测评ID或者评论ID
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportQueryViewModel">
+            <summary>
+            查询硬件设备报告信息
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportQueryViewModel.UserName">
+            <summary>
+            用户姓名
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportQueryViewModel.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportQueryViewModel.BirthDateStart">
+            <summary>
+            出生日期起
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportQueryViewModel.BirthDateEnd">
+            <summary>
+            出生日期止
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportQueryViewModel.PsyName">
+            <summary>
+            量表名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportQueryViewModel.TestTimeStart">
+            <summary>
+            测试时间起
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportQueryViewModel.TestTimeEnd">
+            <summary>
+            测试时间止
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportQueryViewModel.EvaluationTypeID">
+            <summary>
+            测评报告类型ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportQueryViewModel.PageSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportViewModel">
+            <summary>
+            智能硬件测评报告列表
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportViewModel.ID">
+            <summary>
+            测评报告ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportViewModel.Name">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportViewModel.UserID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportViewModel.UserName">
+            <summary>
+            用户名字
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportViewModel.CreateTime">
+            <summary>
+            测评报告时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportViewModel.TotalScore">
+            <summary>
+            测评总得分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportViewModel.OriginalScore">
+            <summary>
+            原始分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportViewModel.AverageScore">
+            <summary>
+            平均分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportViewModel.StandardScore">
+            <summary>
+            标准分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.ClientReportViewModel.TotalLevelName">
+            <summary>
+            测评等级
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.DisPsytestViewModel">
+            <summary>
+            分配的测评信息
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DisPsytestViewModel.PsytestID">
+            <summary>
+            测评ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DisPsytestViewModel.IsShowReport">
+            <summary>
+            是否让被测者查看报告
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.DistributionBatchPsytestViewModel">
+            <summary>
+            向批量创建的账号分配测评
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DistributionBatchPsytestViewModel.DisPsytest">
+            <summary>
+            批量分配的测评
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DistributionBatchPsytestViewModel.BatchType">
+            <summary>
+            批量创建方式：0.批量创建；1.批量导入
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.DistributionPsytestViewModel">
+            <summary>
+            给用户分配测评ViewModel
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DistributionPsytestViewModel.DisPsytest">
+            <summary>
+            给用户分配的测评
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DistributionPsytestViewModel.UserID">
+            <summary>
+            被测者用户ID
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.DResultScoreViewModel">
+            <summary>
+            各维度分数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultScoreViewModel.DimensionName">
+            <summary>
+            维度名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultScoreViewModel.OriginalScore">
+            <summary>
+            原始分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultScoreViewModel.AverageScore">
+            <summary>
+            平均分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultScoreViewModel.LevelName">
+            <summary>
+            等级
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultScoreViewModel.Score">
+            <summary>
+            标准分（最终分数）
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultScoreViewModel.AveStaDeviation">
+            <summary>
+            均分±标准差
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel">
+            <summary>
+            团体报告
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.PsytestName">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.ReportDateTime">
+            <summary>
+            报告时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.PsytestTime">
+            <summary>
+            测评时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.TestMans">
+            <summary>
+            男性测试人数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.TestWoman">
+            <summary>
+            女性测试人数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.AverageAge">
+            <summary>
+            平均年龄
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.StandardAge">
+            <summary>
+            年龄标准差
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.MainIndex">
+            <summary>
+            主要指标
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.MinScore">
+            <summary>
+            总分取值范围最小分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.MaxScore">
+            <summary>
+            总分取值范围最大分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.AverageTotalScore">
+            <summary>
+            总分平均值
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.StandardTotalScore">
+            <summary>
+            总分标准差
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.AverageTotalScoreMan">
+            <summary>
+            男性平均分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.StandardTotalScoreMan">
+            <summary>
+            男性分数标准差
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.AverageTotalScoreWoman">
+            <summary>
+            女性平均分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.StandardTotalScoreWoman">
+            <summary>
+            女性标准差
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.LevelReport">
+            <summary>
+            等级
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel.DRReport">
+            <summary>
+            各维度因子统计分析
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.LevelReportViewModel">
+            <summary>
+            等级
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.LevelReportViewModel.LevelName">
+            <summary>
+            等级名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.LevelReportViewModel.TestMans">
+            <summary>
+            人数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.LevelReportViewModel.Percentage">
+            <summary>
+            百分比
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.DResultReport">
+            <summary>
+            各因子统计分析
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultReport.DimensionName">
+            <summary>
+            维度名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultReport.MinScore">
+            <summary>
+            取值范围最小分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultReport.MaxScore">
+            <summary>
+            取值范围最大分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultReport.AverageTotalScoreMan">
+            <summary>
+            男性平均分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultReport.StandardTotalScoreMan">
+            <summary>
+            男性标准差
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultReport.AverageTotalScoreWoman">
+            <summary>
+            女性平均分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultReport.StandardTotalScoreWoman">
+            <summary>
+            女性标准差
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultReport.AverageTotalScore">
+            <summary>
+            平均分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultReport.StandardTotalScore">
+            <summary>
+            标准差
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.DResultReport.LevelReport">
+            <summary>
+            等级
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.PsyAllocationLogViewModel">
+            <summary>
+            量表分配情况
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsyAllocationLogViewModel.ID">
+            <summary>
+            测评分配日志ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsyAllocationLogViewModel.PsytestName">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsyAllocationLogViewModel.UserName">
+            <summary>
+            如果是分组就是分组名称
+            如果是用户就是用户名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsyAllocationLogViewModel.UserId">
+            <summary>
+            如果是用户就是用户ID，如果是分组就是分组ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsyAllocationLogViewModel.IsGroup">
+            <summary>
+            是否是分组
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsyAllocationLogViewModel.State">
+            <summary>
+            测评完成状态
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsyAllocationLogViewModel.StateStr">
+            <summary>
+            测评完成状态说明
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsyAllocationLogViewModel.AllocationTime">
+            <summary>
+            测评分配时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsyAllocationLogViewModel.PsytestReportID">
+            <summary>
+            测评报告ID
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestCommentViewModel">
+            <summary>
+            发表评论
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestCommentViewModel.ID">
+            <summary>
+            评论ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestCommentViewModel.AimID">
+            <summary>
+            测评ID或者评论ID，
+            如果针对文章进行评论就是文章ID
+            如果针对别人的评论就是评论ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestCommentViewModel.CommentStr">
+            <summary>
+            评论内容
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestCommentViewModel.CreateTime">
+            <summary>
+            评论时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestCommentViewModel.UserID">
+            <summary>
+            评论人的ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestCommentViewModel.NickName">
+            <summary>
+            评论人的昵称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestCommentViewModel.PraiseTimes">
+            <summary>
+            点赞次数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestCommentViewModel.Headimage">
+            <summary>
+            评论人头像
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestUserViewModel">
+            <summary>
+            分配给用户的测评信息
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestUserViewModel.UserID">
+            <summary>
+            测评的用户ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestUserViewModel.PsychtestID">
+            <summary>
+            测评ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestUserViewModel.PsychtestName">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestUserViewModel.IsFinish">
+            <summary>
+            是否已经完成
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestUserViewModel.CreateTime">
+            <summary>
+            分配时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestUserViewModel.PsyallocationLogID">
+            <summary>
+            测评分配ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestUserViewModel.IsShowReport">
+            <summary>
+            是否允许查看测评报告
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestUserViewModel.Score">
+            <summary>
+            分数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestUserViewModel.Lever">
+            <summary>
+            等级
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestUserViewModel.ERID">
+            <summary>
+            测评报告ID
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel">
+            <summary>
+            测评详情
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.ID">
+            <summary>
+            测评ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.Name">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.SpecialtyName">
+            <summary>
+            专业名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.Title">
+            <summary>
+            测评标题
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.UserID">
+            <summary>
+            创建者ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.PsychtestState">
+            <summary>
+            状态0.未审核；1.已审核；-1.审核未通过
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.PsychtestStateStr">
+            <summary>
+            状态描述
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.AuditorID">
+            <summary>
+            审核人
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.AuditorTime">
+            <summary>
+            审核时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.PsychtestPic">
+            <summary>
+            测评图片
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.Price">
+            <summary>
+            测评价格
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.TestTime">
+            <summary>
+            测试时长(分钟)
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.TestAbstract">
+            <summary>
+            测评简介
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.PsychtestTypeID">
+            <summary>
+            测评类型ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.PsychtestTypeStr">
+            <summary>
+            测评类型
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.TestMans">
+            <summary>
+            测试人数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.Guidance">
+            <summary>
+            测验指导
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.CommentTimes">
+            <summary>
+            评论人数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.TopicNu">
+            <summary>
+            题目数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsychtestViewModel.ShowTimes">
+            <summary>
+            浏览次数
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel">
+            <summary>
+            测评报告基础数据
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.PsytestName">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.UserName">
+            <summary>
+            用户姓名
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.EducationLevel">
+            <summary>
+            教育水平
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.HomeAddress">
+            <summary>
+            家庭地址
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.GroupID">
+            <summary>
+            分组ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.PsyTime">
+            <summary>
+            测试用时
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.PsyReportDate">
+            <summary>
+            测试日期
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.TotalScore">
+            <summary>
+            总分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.OriginalScore">
+            <summary>
+            原始分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.AverageScore">
+            <summary>
+            平均分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.StandardScore">
+            <summary>
+            标准分
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.StandardDeviation">
+            <summary>
+            标准差
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.TotalLevelName">
+            <summary>
+            测评等级
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.Analys">
+            <summary>
+            分析说明
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.Advice">
+            <summary>
+            指导建议
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.PsytestBaseReportViewModel.Comment">
+            <summary>
+            测评结果
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel">
+            <summary>
+            已分配测评查询条件
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.Name">
+            <summary>
+            真实姓名
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.BirthDateStart">
+            <summary>
+            出生日期起
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.BirthDateEnd">
+            <summary>
+            出生日期止
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.EducationLevel">
+            <summary>
+            教育水平
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.city">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.GroupID">
+            <summary>
+            分组ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.PsytestID">
+            <summary>
+            量表ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.AllocationTimeStart">
+            <summary>
+            分配时间起
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.AllocationTimeEnd">
+            <summary>
+            分配时间止
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.QueryDisPsytestViewModel.PsyState">
+            <summary>
+            量表状态-1.全部；0.为完成；1.已完成
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.PsytestVM.SavePsyUserOptionViewModel">
+            <summary>
+            提交用户测评数据
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.SavePsyUserOptionViewModel.ptestUserid">
+            <summary>
+            测评记录ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.SavePsyUserOptionViewModel.optionNumber">
+            <summary>
+            选项编号
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.PsytestVM.SavePsyUserOptionViewModel.topicID">
+            <summary>
+            题ID
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.RecommendPsytestViewModel">
+            <summary>
+            推荐测评
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.RecommendPsytestViewModel.PsyName">
+            <summary>
+            测评名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.RecommendPsytestViewModel.PsyPic">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.RecommendPsytestViewModel.TopicCount">
+            <summary>
+            题目数
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.RecommendPsytestViewModel.TestMan">
+            <summary>
+            测试人数
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.RemindUserPsyViewModel">
+            <summary>
+            用户通知
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.RUserPsy.UserID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.RUserPsy.PsyallocationLogID">
+            <summary>
+            测评分配日志ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.RequestArticleListViewModel.ArticleTypeID">
+            <summary>
+            文章分类ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.RequestArticleListViewModel.LabelIds">
+            <summary>
+            文章标签
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.RequestArticleListViewModel.orderbytype">
+            <summary>
+            排序规则：0.发布时间；1.浏览次数；2.收藏次数；3.评论次数
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.ResetPasswordViewModel">
+            <summary>
+            重置密码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ResetPasswordViewModel.TelephoneToken">
+            <summary>
+            手机号凭证
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ResetPasswordViewModel.VerCode">
+            <summary>
+            短信验证码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ResetPasswordViewModel.password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.ResetPasswordViewModel.token">
+            <summary>
+            临时凭据
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.SendSMSCodeViewModel.token">
+            <summary>
+            客户端令牌
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.SendSMSCodeViewModel.tel">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.SendSMSCodeViewModel.type">
+            <summary>
+            0.注册|登录；1.找回密码
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.CheckPicCodeViewModel">
+            <summary>
+            校验图片验证码是否正确
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.CheckPicCodeViewModel.token">
+            <summary>
+            客户端令牌
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.SetUserJurisdictionViewModel.Jurisdiction">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.SetUserJurisdictionViewModel.UserID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UpdateTelphone">
+            <summary>
+            修改或者添加手机号
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UpdateTelphone.Telphone">
+            <summary>
+            电话号码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UpdateTelphone.token">
+            <summary>
+            令牌
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UpdateTelphone.telcode">
+            <summary>
+            短信验证码
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserInfoVM.BatchCreateUserViewModel">
+            <summary>
+            批量创建被测账户
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.BatchCreateUserViewModel.GroupID">
+            <summary>
+            分组ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.BatchCreateUserViewModel.Marking">
+            <summary>
+            固定标示
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.BatchCreateUserViewModel.UserNumber">
+            <summary>
+            用户数量
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.BatchCreateUserViewModel.Password">
+            <summary>
+            初始密码
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserInfoVM.CreateAdminUserViewModel">
+            <summary>
+            创建管理员
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.CreateAdminUserViewModel.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.CreateAdminUserViewModel.PassWord">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserInfoVM.CreateUserViewModel">
+            <summary>
+            创建被测账户
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel">
+            <summary>
+            更新用户信息
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel.BirthDate">
+            <summary>
+            出生日期
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel.EducationLevel">
+            <summary>
+            教育水平
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel.province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel.city">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel.ConsultantTitle">
+            <summary>
+            咨询师等级
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.EdityUserinfoViewModel.Headimgurl">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserMessageViewModel">
+            <summary>
+            上传的用户信息
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserMessageViewModel.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserMessageViewModel.BirthDate">
+            <summary>
+            出生日期
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserMessageViewModel.EducationLevel">
+            <summary>
+            教育程度
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserMessageViewModel.Telephone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserResultViewModel">
+            <summary>
+            批量上传用户信息结果
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserResultViewModel.UploadNumber">
+            <summary>
+            上传数量
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserResultViewModel.SuccessNumber">
+            <summary>
+            成功数量
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserResultViewModel.FailNumber">
+            <summary>
+            失败数量
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserViewModel.FileURL">
+            <summary>
+            用户信息URL
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UploadUserViewModel.GroupID">
+            <summary>
+            用户分组id
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserInfoVM.UserGroupViewModel">
+            <summary>
+            分组信息
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserGroupViewModel.ID">
+            <summary>
+            分组ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserGroupViewModel.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserGroupViewModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserGroupViewModel.EnterpriseID">
+            <summary>
+            所属企业ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserGroupViewModel.AdminUser">
+            <summary>
+            管理员名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserGroupViewModel.HeadImgURL">
+            <summary>
+            管理员头像
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel">
+            <summary>
+            用户基本信息
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.ID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.Nickname">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.Headimgurl">
+            <summary>
+            微信用户头像
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.IsAdmin">
+            <summary>
+            是否是管理员【咨询师】
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.IsHighestAdmin">
+            <summary>
+            是否是最高级管理员
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.IsSystemAdmin">
+            <summary>
+            是否是后台系统管理员
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.BirthDate">
+            <summary>
+            出生日期
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.Telephone">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.EducationLevel">
+            <summary>
+            教育水平
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.Residence">
+            <summary>
+            居住地
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.city">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.EnterpriseID">
+            <summary>
+            所属企业
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.GroupID">
+            <summary>
+            分组ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.ConsultantTitle">
+            <summary>
+            心理咨询师职称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.AdminUserID">
+            <summary>
+            管理员ID
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.AdminUserName">
+            <summary>
+            管理员名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserinfoViewModel.AdminHeadimgurl">
+            <summary>
+            管理员头像
+            </summary>
+        </member>
+        <member name="T:bnuxq.Service.Models.ViewModel.UserInfoVM.UserManagerViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserManagerViewModel.IsGroup">
+            <summary>
+            是否是分组
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserManagerViewModel.Username">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserManagerViewModel.name">
+            <summary>
+            真实姓名
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserManagerViewModel.age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserManagerViewModel.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserManagerViewModel.adminusername">
+            <summary>
+            管理员名称
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserInfoVM.UserManagerViewModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserRegisterViewModel.username">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserRegisterViewModel.password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserRegisterViewModel.Telephone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserRegisterViewModel.VerCode">
+            <summary>
+            短信验证码
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.UserRegisterViewModel.token">
+            <summary>
+            临时凭据
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.VerCodePicViewModel.MainPic">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="P:bnuxq.Service.Models.ViewModel.VerCodePicViewModel.content">
+            <summary>
+            成语内容
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.MqttClientHelper.MqttAgreement.GetWeChatLoginMA(System.String,System.Boolean)">
+            <summary>
+            微信登录结果通知【1.用户授权登录成功；0.用户不同意登录失败】
+            </summary>
+            <param name="uuid"></param>
+            <param name="isLogin"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.MqttClientHelper.MqttAgreement.GetClientUpdateMA(System.String,System.String)">
+            <summary>
+            客户端自动更新通知
+            </summary>
+            <param name="clientType">客户端类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.MqttClientHelper.MqttAgreement.GetPsychtestUserRemind(System.String,System.String)">
+            <summary>
+            提醒用户做测评
+            </summary>
+            <param name="id">用户待完成测评记录ID</param>
+            <param name="name">测评名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.MqttClientHelper.MqttAgreement.GetPsychtestWeChartPayState(System.String,System.Boolean)">
+            <summary>
+            微信支付状态通知
+            </summary>
+            <param name="id"></param>
+            <param name="ispayok"></param>
+            <returns></returns>
+        </member>
+        <member name="T:bnuxq.Service.MqttClientHelper.SubjectItems">
+            <summary>
+            关注的主题
+            </summary>
+        </member>
+        <member name="F:bnuxq.Service.MqttClientHelper.SubjectItems.AllCustomer">
+            <summary>
+            所有用户
+            </summary>
+        </member>
+        <member name="F:bnuxq.Service.MqttClientHelper.SubjectItems.GroupCustomer">
+            <summary>
+            一组用户
+            </summary>
+        </member>
+        <member name="F:bnuxq.Service.MqttClientHelper.SubjectItems.OneCustomer">
+            <summary>
+            单独一个用户
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.MqttClientHelper.MqttPublishClient.PublishGroupClient(System.String,System.String)">
+            <summary>
+            向一组客户端推送消息【放弃的方法，不兼容web】
+            </summary>
+            <param name="groupID"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="M:bnuxq.Service.MqttClientHelper.MqttPublishClient.PublishOneClient(System.String,System.String)">
+            <summary>
+            向单独一个客户端推送消息【放弃的方法，不兼容web】
+            </summary>
+            <param name="clientID"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="M:bnuxq.Service.MqttClientHelper.MqttPublishClient.PublishOneUser(System.String,System.String)">
+            <summary>
+            向具体用户推送消息
+            </summary>
+            <param name="userid">用户ID</param>
+            <param name="msg">消息内容</param>
+        </member>
+        <member name="M:bnuxq.Service.MqttClientHelper.MqttPublishClient.PublishGroupUser(System.String,System.String)">
+            <summary>
+            向一组用户推送消息
+            </summary>
+            <param name="groupid"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="T:bnuxq.Service.OfficeHelper.WordHelper">
+            <summary>
+            Word帮助类
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.OfficeHelper.WordHelper.CreateGroupReportFile(bnuxq.Service.Models.ViewModel.PsytestVM.GroupReportViewModel,System.String)">
+            <summary>
+            生成团体报告的word文档 Item1是FilePath;Item2是FileURL
+            </summary>
+            <param name="grvm">团体报告</param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.OfficeHelper.WordHelper.CreateEvaluationResultFile(bnuxq.Model.UserInfo,bnuxq.Model.EvaluationResult,System.Collections.Generic.IList{bnuxq.Model.DResult},System.Collections.Generic.IList{bnuxq.Model.PsychtestUserOption},System.String)">
+            <summary>
+            生成测评报告
+            </summary>
+            <param name="user"></param>
+            <param name="er"></param>
+            <param name="drlist"></param>
+            <param name="filename"></param>
+            <returns></returns>
+        </member>
+        <member name="F:bnuxq.Service.WeChatAPIHelper.WeChateSiteHelper.wechatCallBackapi">
+            <summary>
+            微信扫码登录回调地址
+            </summary>
+        </member>
+        <member name="F:bnuxq.Service.WeChatAPIHelper.WeChateSiteHelper.wechatServiceCallBackApi">
+            <summary>
+            微信服务号授权回调地址
+            </summary>
+        </member>
+        <member name="M:bnuxq.Service.WeChatAPIHelper.WeChateSiteHelper.getCRContent(System.String)">
+            <summary>
+            生成二维码内容
+            </summary>
+            <param name="weChatUserID">自己生成的全局唯一ID</param>
+            <param name="adminCode">管理员ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.WeChatAPIHelper.WeChateSiteHelper.getEvaluationResultDetails(System.String)">
+            <summary>
+            根据测评结果ID获取测评详情页
+            </summary>
+            <param name="erid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:bnuxq.Service.WeChatAPIHelper.WeChateSiteHelper.getOauthURL(System.String)">
+            <summary>
+            获取微信页面授权跳转链接
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

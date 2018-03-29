@@ -1,0 +1,110 @@
+﻿@using liemei.Common.common
+@model liemei.Model.UserInfo
+
+@{
+    Layout = null;
+    decimal amt = ViewBag.Amt;
+}
+
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>个人中心</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="initial-scale=1,width=device-width,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name='apple-touch-fullscreen' content='yes'>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <link href="~/css/swiper.min.css" rel="stylesheet" />
+    <link href="~/css/public.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/iscroll.css">
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/weui.min.css">
+    <script src="~/js/jquery3.2.0.js"></script>
+    <script src="~/js/sea.js"></script>
+    @*<style>
+        body {
+            background: #e5e5e5;
+        }
+    </style>*@
+</head>
+<body>
+
+    <div class="weui-panel">
+        <div class="weui-panel__bd">
+            <div class="weui-media-box weui-media-box_small-appmsg">
+                <div class="weui-cells">
+                    <a class="weui-cell weui-cell_access" href="javascript:;">
+                        <div class="weui-cell__bd weui-cell_primary">
+                            <p>头像</p>
+                        </div>
+                        <div class="weui-cell__hd">
+                            <img src="@Model.Headimgurl" alt="" style="width:60px;margin-right:5px;display:block">
+                        </div>
+                    </a>
+                    <a class="weui-cell weui-cell_access" href="javascript:;">
+                        <div class="weui-cell__bd weui-cell_primary">
+                            <p>昵称</p>
+                        </div>
+                        <div class="weui-cell__hd">
+                            <p>@(Model.Name.TryToString() == "" ? Model.Nickname : Model.Name.TryToString())</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+
+@*@section scripts{
+    <script type="text/javascript">
+    define = null;
+    require = null;
+    </script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    @Scripts.Render("~/bundles/wechart")
+    <script type="text/javascript">
+            function GetWeiXinJsapiConfig() {
+                var url = encodeURIComponent(location.href);
+                var link = 'http://xxxxx?id=@(Model.ID)&userid=@(ViewBag.louserid)'
+                $.get("/WeixinRedirect/jssignature?url=" + url, function (data) {
+                    wx.config({
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: data['appid'], // 必填，公众号的唯一标识
+                        timestamp: data['timestamp'], // 必填，生成签名的时间戳
+                        nonceStr: data['noncestr'], // 必填，生成签名的随机串
+                        signature: data['signature'], // 必填，签名，见附录1
+                        jsApiList: ['getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    });
+                    wx.ready(function () {
+                        wx.getLocation({
+                            type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                            success: function (res) {
+                                var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                                var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                                var speed = res.speed; // 速度，以米/每秒计
+                                var accuracy = res.accuracy; // 位置精度
+                            }
+                        });
+                    });
+                    wx.error(function (res) {
+                        // alert("err" + res);
+                    });
+                });
+            }
+
+    $(function () {
+        GetWeiXinJsapiConfig();
+    });
+    </script>
+}*@

@@ -1,0 +1,64 @@
+﻿@using bnuxq.Common.common
+@model IList<bnuxq.Model.Psychtest>
+@{ 
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+}
+@section cssfile{
+    <link href="~/css/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/iscroll.css">
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/weui.min.css">
+
+}
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var psy in Model)
+    {
+
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+                <a href="/Psychtest/PsychTestInfo?id=@psy.ID" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="@psy.PsychtestPic" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">@psy.Name</h4>
+                        <p class="weui-media-box__desc">@psy.TestAbstract</p>
+                        <span class="boxcs1">@psy.TestMans 人测试</span>
+                        @if (psy.PsychtestType == bnuxq.Model.EnumModel.PsychtestPrTypeEnum.Specialty)
+                        {
+                            var pi = psy.Price.TryToDouble() + 52;
+                            <span class="boxcs3">￥ @psy.Price.TryToDouble()</span>
+                            <span class="boxcs2">￥ @pi</span>
+                        }
+                    </div>
+                </a>
+            </div>
+            </div>
+
+
+
+
+            @*<li class="clearfix">
+                    <div href="#" class="p-wzdt-l">
+                        <img src="@psy.PsychtestPic" alt="">
+                    </div>
+                    <div class="p-wzdt-r clearfix">
+                        <p>@psy.Name</p>
+                        <span class="allcp-t01">@psy.Title</span>
+                        <div class="p-wzdt-btn allcp-m-box clearfix">
+                            <div class="allcp-money">
+                                <em class="wzdt-money">&yen;</em>
+                                <var class="wzdt-money">@psy.Price.TryToDouble()</var>
+                            </div>
+                            <div class="allcp-money allcp-money01">
+                                <var class="wzdt-money">&yen;&nbsp;@(psy.Price.TryToDouble() + 22)</var>
+                            </div>
+                            <botton class="allcp-date">立即购买</botton>
+                        </div>
+                    </div>
+                    <a href="/Psychtest/PsychTestInfo?id=@psy.ID" class="p-wzdt-c-btn"></a>
+                </li>*@
+     }
+}

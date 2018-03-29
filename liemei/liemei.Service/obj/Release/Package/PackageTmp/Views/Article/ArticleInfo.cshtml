@@ -1,0 +1,241 @@
+﻿@using bnuxq.Model
+@model bnuxq.Model.Article
+
+@{
+    ViewBag.Title = Model.ArticleTitle;
+    Layout = null;
+    UserInfo auser = ViewBag.auser;
+    string url = "http://open.bnuxq.com/Article/ArticleInfo?id=" + Model.ID;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>@Model.ArticleTitle</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1,width=device-width,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <link type="text/css" rel="stylesheet" href="../css/public.css" source="widget">
+    <link type="text/css" rel="stylesheet" href="../css/swiper.min.css" source="widget">
+    <link rel="stylesheet" href="/css/iscroll.css">
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/weui.min.css">
+
+</head>
+
+<body>
+    <nav class="clearfix nav article-xx">
+        <a class="break article-null"></a>
+        <a href="##" class="customer fenxiang"></a>
+        <h2 class="nav-t">心理文章</h2>
+    </nav>
+    <div class="article-c">
+        <div class="article-c-t">
+            @if (auser.Name != "系统管理员")
+            {
+                <p>@Model.ArticleTitle</p><span>@(auser.Name)发表于@(Model.PublishDate.ToString("yyyy-MM-dd"))</span>
+            }
+            
+        </div>
+        @if (!string.IsNullOrEmpty(Model.TitlePic))
+        {
+            <div class="article-banner"><img src="@Model.TitlePic" alt="广告01"></div>
+        }
+       
+        <div class="article-c01">
+            @Html.Raw(Model.Content)
+        </div>
+
+        <div class="weui-panel weui-panel_access divbottom">
+            <div class="weui-panel__hd"><span class="titltcs">推荐文章</span><a href="#" class="panelhda fontcolor">更多文章&nbsp;></a></div>
+            @Html.Action("RecommendArticle", "Article", null)
+        </div>
+        @*<div id="kwz-box">
+                <ul class="p-wzdt-c">
+                    <li class="clearfix">
+                        <a href="#" class="p-wzdt-l"><img src="images/wzdt-01.png" alt=""></a>
+                        <div class="p-wzdt-r article-pl clearfix">
+                            <span>郭靖:</span>
+                            <p>心甘情愿的说不好，温和而坚定地说不</p>
+                            <div class="p-kwz-x-box clearfix">
+                                <div class="kwz-xx01"><span class="kwz-date">2017-04-13</span></div>
+                                <div class="kwz-xx02 article-zan clearfix"><em class="art-zan-btn"></em> <span class="art-zan-n">635</span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <a href="#" class="p-wzdt-l"><img src="images/wzdt-01.png" alt=""></a>
+                        <div class="p-wzdt-r article-pl clearfix">
+                            <span>郭靖:</span>
+                            <p>心甘情愿的说不好，温和而坚定地说不</p>
+                            <div class="p-kwz-x-box clearfix">
+                                <div class="kwz-xx01"><span class="kwz-date">2017-04-13</span></div>
+                                <div class="kwz-xx02 article-zan article-zan01 clearfix"><em class="art-zan-btn01"></em> <span class="art-zan-n01">635</span></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>*@
+        <ul class="wzxx-nav clearfix">
+            <li>
+                <a href="javascript:;" class="@(ViewBag.ispraise ? "wzxx-nav-z":"wzxx-nav-z wzxx-nav-z01")"></a>
+            </li>
+            <li>
+                <a href="javascript:;" class="@(ViewBag.isCollection ? "wzxx-nav-s":"wzxx-nav-s wzxx-nav-s01")" id="Collection" onclick="Collection('@Model.ID')"></a>
+            </li>
+        </ul>
+    </div>
+    <script src="~/js/jquery3.2.0.js" source="widget"></script>
+    <script src="~/js/sea.js" source="widget"></script>
+    <script type="text/javascript">
+    define = null;
+    require = null;
+    </script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script type="text/javascript">
+		seajs.use("public", function(i) {
+			i.init()
+		});
+    </script>
+    @if (!ViewBag.ispraise)
+    {
+        <script>
+            //点赞
+            function zanBtn(n, a) {
+                $(n).click(function () {
+                    $(this).removeClass(a)
+                    $.get("/Article/ArticlePraise?id=@(Model.ID)");
+                })
+            }
+            zanBtn(".wzxx-nav-z", "wzxx-nav-z01");
+        </script>
+    }
+    <script>
+		function onum(n, a, t) {
+			$(n).click(function() {
+				var z = parseInt($(a).html());
+				$(n).siblings(a).html(z + 1), $(this).removeClass(t)
+			})
+		}
+
+		onum(".art-zan-btn", ".art-zan-n", "art-zan-btn"), onum(".art-zan-btn01", ".art-zan-n01", "art-zan-btn01");
+
+        //收藏
+		function Collection(id) {
+		    var cname = $("#Collection").attr('class');
+		    if (cname == "wzxx-nav-s wzxx-nav-s01") {
+		        $("#Collection").attr('class', 'wzxx-nav-s');
+		        $.get("/Article/ArticleCollertion?type=0&id="+id);
+		    } else {
+		        $("#Collection").attr('class', 'wzxx-nav-s wzxx-nav-s01');
+		        $.get("/Article/ArticleCollertion?type=1&id=" + id);
+		    }
+		}
+		function GetWeiXinJsapiConfig() {
+		    var url = location.href;
+		    $.get("/WeixinRedirect/jssignature?url=" + url, function (data) {
+		        console.log(data);
+		        console.log("sig is " + data['signature']);
+		        wx.config({
+		            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+		            appId: data['appid'], // 必填，公众号的唯一标识
+		            timestamp: data['timestamp'], // 必填，生成签名的时间戳
+		            nonceStr: data['noncestr'], // 必填，生成签名的随机串
+		            signature: data['signature'], // 必填，签名，见附录1
+		            jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+		        });
+		        wx.ready(function () {
+		            //分享到朋友圈
+		            wx.onMenuShareTimeline({
+		                title: '@Model.ArticleTitle', // 分享标题
+		                link: '@url', // 分享链接
+		                imgUrl: '@Model.TitlePic', // 分享图标
+		                success: function () {
+		                    // 用户确认分享后执行的回调函数
+		                    $.get("/Article/ArticleShare?id=@Model.ID");
+		                },
+		                cancel: function () {
+		                    // 用户取消分享后执行的回调函数
+		                }
+		            });
+		            //分享给朋友
+		            wx.onMenuShareAppMessage({
+		                title: '@Model.ArticleTitle', // 分享标题
+		                desc: '@Model.ArticleTypeStr', // 分享描述
+		                link: '@url', // 分享链接
+		                imgUrl: '@Model.TitlePic', // 分享图标
+		                type: '', // 分享类型,music、video或link，不填默认为link
+		                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		                success: function () {
+		                    // 用户确认分享后执行的回调函数
+		                    $.get("/Article/ArticleShare?id=@Model.ID", function (msg) {
+		                    });
+		                },
+		                cancel: function () {
+		                    // 用户取消分享后执行的回调函数
+		                }
+		            });
+		            //分享到QQ
+		            wx.onMenuShareQQ({
+		                title: '@Model.ArticleTitle', // 分享标题
+		                desc: '@Model.ArticleTypeStr', // 分享描述
+		                link: '@url', // 分享链接
+		                imgUrl: '@Model.TitlePic', // 分享图标
+		                success: function () {
+		                    // 用户确认分享后执行的回调函数
+		                    $.get("/Article/ArticleShare?id=@Model.ID");
+		                },
+		                cancel: function () {
+		                    // 用户取消分享后执行的回调函数
+		                }
+		            });
+		            //分享到腾讯微博
+		            wx.onMenuShareWeibo({
+		                title: '@Model.ArticleTitle', // 分享标题
+		                desc: '@Model.ArticleTypeStr', // 分享描述
+		                link: '@url', // 分享链接
+		                imgUrl: '@Model.TitlePic', // 分享图标
+		                success: function () {
+		                    // 用户确认分享后执行的回调函数
+		                    $.get("/Article/ArticleShare?id=@Model.ID");
+		                },
+		                cancel: function () {
+		                    // 用户取消分享后执行的回调函数
+		                }
+		            });
+		            //分享到QQ空间
+		            wx.onMenuShareQZone({
+		                title: '@Model.ArticleTitle', // 分享标题
+		                desc: '@Model.ArticleTypeStr', // 分享描述
+		                link: '@url', // 分享链接
+		                imgUrl: '@Model.TitlePic', // 分享图标
+		                success: function () {
+		                    // 用户确认分享后执行的回调函数
+		                    $.get("/Article/ArticleShare?id=@Model.ID");
+		                },
+		                cancel: function () {
+		                    // 用户取消分享后执行的回调函数
+		                }
+		            });
+
+		        });
+		        wx.error(function (res) {
+		            // alert("err" + res);
+		        });
+		    });
+		}
+		$(function () {
+		    GetWeiXinJsapiConfig();
+		})
+    </script>
+</body>
+</html>
+

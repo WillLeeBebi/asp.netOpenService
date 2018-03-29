@@ -1,0 +1,141 @@
+﻿@using bnuxq.Model
+@using bnuxq.Common.common
+@model IList<bnuxq.Model.PsychtestUser>
+
+@{
+    ViewBag.Title = "我的测评";
+    List<Psychtest> plist = ViewBag.plist;
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+}
+
+<div class="weui-tab">
+    <div class="weui-navbar">
+        <div class="weui-navbar__item weui-bar__item_on" for="item1">
+            已完成
+        </div>
+        <div class="weui-navbar__item" for="item2">
+            未完成
+        </div>
+    </div>
+    <div class="weui-tab__panel">
+        <div id="item1">
+            <div class="weui-cells">
+                @Html.Action("UserEvalResult", "EvaluationResultView", new { pageIndex = 1 })
+            </div>
+        </div>
+        <div style="display:none" id="item2">
+            
+            <div class="weui-cells">
+                @if (Model != null)
+                {
+                    foreach (var puser in Model)
+                    {
+                        Psychtest ptest = plist.FirstOrDefault(x => x.ID == puser.PsychtestID);
+
+                        if (ptest != null)
+                        {
+
+                            <a class="weui-cell weui-cell_access" href="/Psychtest/PsychTestprocess?ptestUserid=@(puser.ID)">
+                                <div class="weui-cell__hd"><img src="@ptest.PsychtestPic" alt="" style="width:65px;margin-right:10px;display:block"></div>
+                                <div class="weui-cell__bd">
+                                    <p class="weui-cell__bd_title">@ptest.Name</p>
+                                    <p class="weui-cell__bd_content">@(ptest.TestMans)人测试</p>
+                                </div>
+                                <div class="weui-cell__ft">点击测试</div>
+                            </a>
+                        }
+
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" value="1" name="pageindex" />
+@section scripts{
+<script src="~/js/sea.js"></script>
+<script type="text/javascript" src="/js/iscroll.js"></script>
+<script type="text/javascript" src="/js/zepto.min.js"></script>
+<script>
+    $(".weui-navbar__item").on("click", function () {
+        $(".weui-bar__item_on").removeClass("weui-bar__item_on")
+        $(this).addClass("weui-bar__item_on")
+        var item = $(this).attr("for")
+        if (item == "item1") {
+            $("#item1").show();
+            $("#item2").hide();
+        }
+        if (item == "item2") {
+            $("#item2").show();
+            $("#item1").hide();
+        }
+    });
+
+
+    //var data,
+    //    myScroll,
+    //    pullUpEl, pullUpOffset,
+    //    generatedCount = 0;
+    //$("#pullUp").hide();
+    //function pullDownAction () {
+    //}
+
+    //function pullUpAction () {
+    //    var pageIndex = Number($("input[name=pageindex]").val())+1;
+    //    $.get("/EvaluationResultView/UserEvalResult?pageIndex=" + pageIndex, function (htmldoc) {
+    //        if (htmldoc != null && htmldoc != undefined) {
+    //            $(".p-kh-c").append(htmldoc);
+    //            $("input[name=pageindex]").val(pageIndex)
+    //            myScroll.refresh();
+    //        }
+    //        $("#pullUp").hide();
+    //    });
+    //}
+
+    ////初始化绑定iScroll控件
+    //document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    //document.addEventListener('DOMContentLoaded', loaded, false);
+
+    //function loaded() {
+    //    pullUpEl = document.getElementById('pullUp');
+    //    pullUpOffset = pullUpEl.offsetHeight;
+
+    //    /**
+    //     * 初始化iScroll控件
+    //     */
+    //    myScroll = new iScroll('wrapper', {
+    //        vScrollbar : false,
+    //        onRefresh : function () {
+    //            if (pullUpEl.className.match('loading')) {
+    //                pullUpEl.className = '';
+    //                pullUpEl.querySelector('.pullUpLabel').innerHTML = '';
+    //            }
+    //        },
+    //        onScrollMove: function () {
+
+    //             if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+    //                pullUpEl.className = 'flip';
+    //                pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
+    //                pullUpEl.querySelector('.pullUpIcon01').style.display = "block";
+    //                $("#pullUp").show();
+    //            }
+    //        },
+    //        onScrollEnd: function () {
+
+    //            if (pullUpEl.className.match('flip')) {
+    //                pullUpEl.className = 'loading01';
+    //                pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
+    //                pullUpAction();
+    //            }
+    //        }
+    //    });
+    //}
+</script>
+
+<script>
+  seajs.use("public",function (app) {
+            app.init()
+        })
+</script>
+    }

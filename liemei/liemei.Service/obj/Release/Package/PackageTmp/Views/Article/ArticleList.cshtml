@@ -1,0 +1,44 @@
+﻿@using bnuxq.Model
+@using System.Text.RegularExpressions
+@model IList<bnuxq.Model.Article>
+@{
+    Layout = null;
+    List<UserInfo> userlist = ViewBag.userlist;
+}
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var a in Model)
+    {
+        var user = userlist.FirstOrDefault(x => x.ID == a.UserID);
+        <div class="weui-panel__bd">
+            <a href="/Article/ArticleInfo?id=@a.ID" class="weui-media-box weui-media-box_appmsg">
+                <div class="weui-media-box__hd">
+                    <img class="weui-media-box__thumb" src="@a.TitlePic" alt="">
+                </div>
+                <div class="weui-media-box__bd">
+                    <h4 class="weui-media-box__title">@a.ArticleTitle</h4>
+                    <p class="weui-media-box__desc">@Regex.Replace(a.Content, "<.+?>", "").Replace("&nbsp;", "");</p>
+                    <span class="boxcs1">@a.ShowTimes 人阅读</span>
+                    <span class="fontcolor rightcs">@a.PublishDate.ToString("MM月dd日")</span>
+                </div>
+            </a>
+        </div>
+
+
+
+        @*<li class="clearfix">
+                @if (!string.IsNullOrEmpty(a.TitlePic))
+                {
+                    <div href="#" class="p-wzdt-l"><img src="@a.TitlePic" alt=""></div>
+                }
+                <div class="p-wzdt-r clearfix">
+                    <p>@a.ArticleTitle</p>
+                    <div class="p-kwz-x-box clearfix">
+                        <div class="kwz-xx01"><var class="kwz-name">@user.Name</var> <span class="kwz-date">@a.PublishDate.ToString("yyyy-MM-dd")</span></div>
+                        <div class="kwz-xx02 clearfix"><em></em> <span>@a.ShowTimes</span></div>
+                    </div>
+                </div>
+                <a href="/Article/ArticleInfo?id=@a.ID" class="p-wzdt-c-btn"></a>
+            </li>*@
+    }
+}

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="liemei.Model" namespace="liemei.Model" default-lazy="true">
+
+  <class name="PayOrder" table="PayOrder">
+    <id name="ID">
+      <column name="ID" sql-type="char(32)" not-null="true"/>
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="PayType" column="PayType" />
+    <property name="OnlineOrder" column="OnlineOrder"/>
+    <property name="UserID" column="UserID"/>
+    <property name="total_fee"   column="total_fee"   />
+    <property name="trade_type"   column="trade_type"   />
+    <property name="product_id"   column="product_id"   />
+    <property name="openid"   column="openid"   />
+    <property name="prepay_id"   column="prepay_id"   />
+    <property name="code_url"   column="code_url"   />
+    <property name="PayState"   column="PayState"   />
+    <property name="PayStateMsg"   column="PayStateMsg"   />
+    <property name="CreateTime"   column="CreateTime"   />
+  </class>
+</hibernate-mapping>

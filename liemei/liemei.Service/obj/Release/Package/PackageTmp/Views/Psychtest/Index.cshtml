@@ -1,0 +1,180 @@
+﻿@using bnuxq.Model
+@using bnuxq.Common.common
+@using bnuxq.Model.EnumModel
+@model IList<bnuxq.Model.Psychtest>
+
+@{
+    ViewBag.Title = "全部测评";
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+    IList<PsychtestType> ptypelist = ViewBag.ptypelist;
+    List<PsychtestType> zhuanlist = ptypelist.Where(a => a.Testtype == TestTypeEnum.majors).ToList();//专业测评
+    List<PsychtestType> qulist = ptypelist.Where(a => a.Testtype == TestTypeEnum.funs).ToList();//趣味测评
+    List<Psychtest> timelist = ViewBag.timelist;//热门测评
+    string typeName = "全部测评";
+    if (!string.IsNullOrEmpty(ViewBag.type))
+    {
+        PsychtestType pty = ptypelist.FirstOrDefault(x => x.ID == ViewBag.type);
+        if (pty != null)
+        {
+            typeName = pty.TypeName;
+        }
+    }
+}
+@section cssfile{
+    <link href="~/css/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/iscroll.css">
+    @*<link href="~/css/main.css" rel="stylesheet" />*@
+    @*<link rel="stylesheet" href="/css/weui.min.css">*@
+
+}
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><a href="/Psychtest/PsychTestInfo?id=86"><img src="http://resources.bnuxq.com:8082/2017120501543609CELIC5VT.jpg" alt="考试心理控制能力测验" width="100%" height="100%"></a></div>
+        <div class="swiper-slide"><a href="/Psychtest/PsychTestInfo?id=82"><img src="http://resources.bnuxq.com:8082/2017120501510810VB3DAE3H.jpg" alt="婚姻质量问卷" width="100%" height="100%"></a></div>
+        <div class="swiper-slide"><a href="/Psychtest/PsychTestInfo?id=10"><img src="http://resources.bnuxq.com:8082/20171205102417208UCFZZ91.jpg" alt="焦虑自评量表" width="100%" height="100%"></a></div>
+        <div class="swiper-slide"><a href="/Psychtest/PsychTestInfo?id=114"><img src="http://resources.bnuxq.com:8082/2017050405454685XSXAM3YM.jpg" alt="团队领导能力问卷" width="100%" height="100%"></a></div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<div class="weui-tab">
+    <div class="weui-navbar">
+        <div id="title1" class="weui-navbar__item titlecs1" onclick="dis(1)">
+            专业测评
+        </div>
+        <div id="title2" class="weui-navbar__item titlecs2" onclick="dis(2)">
+            趣味测评
+        </div>
+    </div>
+    <div class="weui-tab__panel">
+        <div class="zhuan">
+            <div class="swipercs">
+                @if (zhuanlist != null && zhuanlist.Count > 0)
+                {
+                    var res = zhuanlist.Count / 4;
+                    for (int i = 0; i < res; i++)
+                    {
+                        <div class="weui-flex divmtop">
+                            @if (res > 0)
+                            {
+                                for (int j = 0; j < 4; j++)
+                                {
+                                    var srcs = "/Content/images/" + @zhuanlist[i * 4 + j].TypeName + ".png";
+                                    <div class="weui-flex__item">
+                                        <div class="placeholder textcs">
+                                            <a href="/Psychtest/PsychtestList?pageIndex=1&type=@(zhuanlist[i*4+j].ID)">
+                                                <img src="@srcs" class="imgcs" />
+                                                <p class="fontcolor">@zhuanlist[i * 4 + j].TypeName</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="qu boxdis">
+            <div class="swipercs">
+                @if (qulist != null && qulist.Count > 0)
+            {
+                var res = qulist.Count / 4;
+                for (int i = 0; i < res; i++)
+                {
+                <div class="weui-flex divmtop">
+                    @if (res > 0)
+                            {
+                                for (int j = 0; j < 4; j++)
+                                {
+                                    var srcs = "/Content/images/" + @qulist[i * 4 + j].TypeName + ".png";
+                                    <div class="weui-flex__item">
+                                        <div class="placeholder textcs">
+                                            <a href="/Psychtest/PsychtestList?pageIndex=1&type=@(qulist[i*4+j].ID)">
+                                                <img src="@srcs" class="imgcs" />
+                                                <p class="fontcolor">@qulist[i * 4 + j].TypeName</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__hd panelhd"><img src="~/Content/images/rectangles1.png" class="leftcs" />&nbsp;&nbsp;<span class="titltcs">热门测评</span></div>
+        </div>
+        <div class="swipercs">
+            <div class="swiper-container1">
+                <div class="swiper-wrapper">
+                    @if (timelist != null && timelist.Count > 0)
+                    {
+                        foreach (var item in timelist)
+                        {
+                            <div class="swiper-slide">
+                                <a href="/Psychtest/PsychTestInfo?id=@item.ID">
+                                    <img src="@item.PsychtestPic" class="swimgcs1">
+                                    <p class="swipertestcs">@item.Name</p>
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__hd panelhd"><img src="~/Content/images/rectangles2.png" class="leftcs" />&nbsp;&nbsp;<span class="titltcs">推荐测评</span></div>
+                @Html.Action("RecommendPsychtest", "Psychtest", null)
+        </div>
+    </div>
+
+</div>
+
+<input type="hidden" value="@ViewBag.pageIndex" name="pageIndex" />
+@section scripts{
+    <script type="text/javascript" src="/js/iscroll.js"></script>
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script src="~/js/sea.js" source="widget"></script>
+    <script src="~/Scripts/swiper.min.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            var mySwiper = new Swiper('.swiper-container', {
+                autoplay: 3000,//可选选项，自动滑动
+            })
+            var swiper1 = new Swiper('.swiper-container1', {
+                slidesPerView: 3,
+                spaceBetween: 10,
+                autoplay: 3500,//可选选项，自动滑动
+                virtual:true,
+                loop: true
+            });
+        }
+
+        function dis(data) {
+            if (data == "1") {
+                $(".zhuan").show();
+                $("#title1").addClass("titlecs1");
+                $("#title1").removeClass("titlecs2");
+                $(".qu").hide();
+                $("#title2").addClass("titlecs2");
+                $("#title2").removeClass("titlecs1");
+            }
+            else {
+                $(".zhuan").hide();
+                $("#title1").addClass("titlecs2");
+                $("#title1").removeClass("titlecs1");
+                $(".qu").show();
+                $("#title2").addClass("titlecs1");
+                $("#title2").removeClass("titlecs2");
+            }
+        }
+    </script>
+    <script>
+        seajs.use("public", function (app) {
+            app.init()
+        })
+    </script>
+}

@@ -1,0 +1,86 @@
+﻿@using bnuxq.Model
+@{
+    ViewBag.Title = "心理文章";
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+    IList<ArticleType> atlist = ViewBag.atlist;
+}
+@section cssfile{
+    <link href="~/css/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/iscroll.css">
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/weui.min.css">
+}
+<div class="see-nav" id="see-nav">
+    <ul>
+        <li>
+            <a href="/Article/Index?pageIndex=1" class="@(ViewBag.type==""?"see-ts":"")">全部</a>
+        </li>
+        @if (atlist != null && atlist.Count > 0)
+        {
+            foreach (var at in atlist)
+            {
+                <li>
+                    <a href="/Article/Index?pageIndex=1&type=@(at.ID)" class="@(ViewBag.type==at.ID ? "see-ts":"")">@at.TypeStr</a>
+                </li>
+            }
+        }
+    </ul>
+</div>
+<!--start 轮播-->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <a href="/Article/ArticleInfo?id=fc3b48162a7b4134baf2614463fdd8dc">
+                <img src="http://resources.bnuxq.com:8082/images/2017/5\f94995acb188e0556a17ac64a8e0aea6.jpg" alt="再婚家庭应怎样处理亲子关系">
+                <span class="swiperstitle">再婚家庭应怎样处理亲子关系</span>
+            </a>
+        </div>
+        <div class="swiper-slide">
+            <a href="/Article/ArticleInfo?id=04c6899756f349c3b5e9063cfd2b99be">
+                <img src="http://resources.bnuxq.com:8082/images/2017/5\b5264430e2665c9f86f3f594ce938d6e.jpg" alt="专职和兼职，如何平衡？">
+                <span class="swiperstitle">专职和兼职，如何平衡？</span>
+            </a>
+        </div>
+        <div class="swiper-slide">
+            <a href="/Article/ArticleInfo?id=445ecec261444e8081c797a73656d45e">
+                <img src="http://resources.bnuxq.com:8082/images/2017/5\4d708f83796e8d3608305c277fbe58f3.jpg" alt="如何才能够克服“面试恐惧症”？">
+                <span class="swiperstitle">如何才能够克服“面试恐惧症”？</span>
+            </a>
+        </div>
+        <div class="swiper-slide">
+            <a href="/Article/ArticleInfo?id=a3a0ca3fab6c448da5882358f8943f6c">
+                <img src="http://resources.bnuxq.com:8082/images/2017/5\f3fbe6663b8171e3942ca96964ade5e0.jpg" alt="不完美世界，锻炼喜剧精神">
+                <span class="swiperstitle">不完美世界，锻炼喜剧精神</span>
+            </a>
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<!--end 轮播-->
+<!-- 内容 -->
+
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd"><span class="titltcs">推荐文章</span><a href="#" class="panelhda fontcolor">更多文章&nbsp;></a></div>
+    @Html.Action("ArticleList", new { type = ViewBag.type, pageIndex = 1 })
+</div>
+
+<input type="hidden" name="pageindex" value="1" />
+@section scripts{
+    <script type="text/javascript" src="/js/iscroll.js"></script>
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script src="~/js/sea.js" source="widget"></script>
+    <script src="~/Scripts/swiper.min.js"></script>
+    <script>
+        window.onload = function () {
+            var swiper = new Swiper('.swiper-container', {
+                autoplay: 3000,//可选选项，自动滑动
+            });
+        }
+    </script>
+    <script>
+        seajs.use("public", function (app) {
+            app.init()
+        })
+    </script>
+}

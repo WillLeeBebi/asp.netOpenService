@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="bnuxq.Model" namespace="bnuxq.Model" default-lazy="true">
+
+  <class name="EvaluationResult" table="EvaluationResult">
+    <id name="ID">
+      <column name="ID" sql-type="char(32)" not-null="true"/>
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="Name" column="Name" />
+    <property name="PsychtestPic" column="PsychtestPic" />
+    <property name="UserID" column="UserID"/>
+    <property name="OpenID" column="OpenID"/>
+    <property name="CreateTime"   column="CreateTime"   />
+    <property name="LockCode"      column="LockCode"      />
+    <property name="EvaluationTypeID"    column="EvaluationTypeID"    />
+    <property name="EvaluationTypeStr"    column="EvaluationTypeStr"    />
+    <property name="TotalScore"    column="TotalScore"    />
+    <property name="StandardDeviation"    column="StandardDeviation"    />
+    <property name="TotalLevelName"    column="TotalLevelName"    />
+    <property name="ResultPic"    column="ResultPic"    />
+    <property name="CreateDate"    column="CreateDate"     />
+    <property name="PsychtestUserID"    column="PsychtestUserID"     />
+    <property name="OriginalScore"    column="OriginalScore"  />
+    <property name="AverageScore"    column="AverageScore"  />
+  <property name="StandardScore"    column="StandardScore"  />
+  </class>
+</hibernate-mapping>

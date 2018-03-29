@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "xxx";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>登录成功</title>
+    <link rel="stylesheet" href="~/css/weui.min.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="weui-msg">
+            <div class="weui-msg__icon-area">
+                <i class="weui-icon-success weui-icon_msg"></i>
+            </div>
+            <div class="weui-msg__text-area">
+                <h2 class="weui-msg__title">操作成功</h2>
+                <p class="weui-msg__desc">您已授权成功</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+document.addEventListener('WeixinJSBridgeReady', function(){ WeixinJSBridge.call('closeWindow'); }, false);
+</script>

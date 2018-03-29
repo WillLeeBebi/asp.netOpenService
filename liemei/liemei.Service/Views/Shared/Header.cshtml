@@ -1,0 +1,18 @@
+﻿@model liemei.Model.UserInfo
+@{
+    Layout = null;
+    string url = "";
+    if (Model.IsAdmin)
+    {
+        url = "/AdminCore/Index";
+    }
+    else
+    {
+        url = "/UserCore/Index";
+    }
+}
+<nav class="clearfix nav">
+    <a href="##" class="break"></a>
+    <a href="@url" class="customer"><img src="@Model.Headimgurl" alt=""></a>
+    <h2 class="nav-t">@ViewBag.title</h2>
+</nav>

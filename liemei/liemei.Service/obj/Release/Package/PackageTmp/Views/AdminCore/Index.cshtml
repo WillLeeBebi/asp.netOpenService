@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "管理中心";
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+}
+
+@section cssfile{
+<link href="~/css/swiper.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/css/weui.min.css">
+<link href="~/css/public.css" rel="stylesheet" />
+<link href="~/css/main.css" rel="stylesheet" />
+    }
+<!-- 轮播 -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="swiper-zoom-container"><a href="/Psychtest/PsychTestInfo?id=109"><img src="http://resources.bnuxq.com:8082/20171205103816038L1CVXRY.jpg" alt="幼儿交往能力检测表"></a></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="swiper-zoom-container"><a href="/Psychtest/PsychTestInfo?id=1"><img src="http://resources.bnuxq.com:8082/2017091310370619WT3ETO35.jpg" alt="心理健康临床症状自评量表"></a></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="swiper-zoom-container"><a href="/Article/ArticleInfo?id=b7485a6c01ab4ea1a67f0ded8ef68d98"><img src="http://resources.bnuxq.com:8082/images/2017/5\86eb1fa7ad13b88e2ac542f191715a7b.jpg" alt="控制情绪之成功阶梯法"></a></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="swiper-zoom-container"><a href="/Article/ArticleInfo?id=445ecec261444e8081c797a73656d45e"><img src="http://resources.bnuxq.com:8082/images/2017/5\4d708f83796e8d3608305c277fbe58f3.jpg" alt="如何才能够克服“面试恐惧症”？"></a></div>
+            </div>
+        </div>
+    </div>
+<!-- 管理中心导航 -->
+<div id="gl-n-box">
+    <ul class="gl-n clearfix">
+        <li>
+            <em class="gl-n01"></em>
+            <span>我的文章</span>
+            <a href="/Article/UserArticle"></a>
+        </li>
+        <li>
+            <em class="gl-n02"></em>
+            <span>我的测评</span>
+            <a href="/Psychtest/UserPsychtest"></a>
+        </li>
+        <li>
+            <em class="gl-n03"></em>
+            <span>我的客户</span>
+            <a href="/AdminCore/CustomerList?pageIndex=1"></a>
+        </li>
+        <li>
+            <em class="gl-n04"></em>
+            <span>个人中心</span>
+            <a href="/UserCore/Index"></a>
+        </li>
+    </ul>
+</div>
+<!-- 文章动态 -->
+<div id="wzdt-box">
+    <h5 class="p-wzdt-t">文章动态</h5>
+    <ul class="p-wzdt-c">
+        @Html.Action("ArticleDyLogList",new { pageindex =1})
+    </ul>
+    @*<div class="gl-more">
+        <a href="##">更多动态</a>
+    </div>*@
+</div>
+<!-- 测评动态 -->
+<div id="cp-box">
+    <h5 class="p-wzdt-t">测评动态</h5>
+    <ul class="p-wzdt-c">
+        @Html.Action("PsychtestDyLogList")
+        
+    </ul>
+    @*<div class="gl-more">
+        <a href="##">更多文章</a>
+    </div>*@
+</div>
+<!-- 看文章 -->
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd panelhd"><img src="~/Content/images/rectangles2.png" class="leftcs" />&nbsp;&nbsp;<span class="titltcs">看文章</span><a href="/Article/Index" class="panelhda fontcolor">更多文章&nbsp;></a></div>
+    @Html.Action("RecommendArticle", "Article", null)
+</div>
+<!-- 做测试 -->
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd panelhd"><img src="~/Content/images/rectangles2.png" class="leftcs" />&nbsp;&nbsp;<span class="titltcs">推荐测评</span><a href="/Psychtest/Index" class="panelhda fontcolor">更多测评&nbsp;></a></div>
+        @Html.Action("RecommendPsychtest", "Psychtest", null)
+</div>
+
+
+@section scripts{
+<script src="~/js/sea.js"></script>
+<script src="~/js/jquery3.2.0.js"></script>
+<script>
+    seajs.use("public", function (i) {
+        console.log(i);
+				i.init()
+			});
+</script>
+<script>
+			function onum(n, e, o) {
+				$(n).click(function() {
+					var t = parseInt($(e).html());
+					$(n).find(e).html(t + 1), $(this).removeClass(o)
+				})
+			}
+			onum(".see-cont", ".guanli-num", "see-cont"), onum(".see-cont", ".guanli-num01", "see-cont");
+</script>
+    }
+

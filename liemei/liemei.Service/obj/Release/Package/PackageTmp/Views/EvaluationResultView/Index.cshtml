@@ -1,0 +1,302 @@
+﻿@using bnuxq.Model
+@model bnuxq.Model.EvaluationResult
+
+@{
+    ViewBag.Title = "测评详情";
+    Layout = "~/Views/Shared/_weChatLayout.cshtml";
+    UserInfo user = ViewBag.User as UserInfo;
+
+    IList<DResult> drlist = ViewBag.drlist as IList<DResult>;    
+}
+@section cssfile{
+<link rel="stylesheet" href="~/css/weui.min.css" />
+<link rel="stylesheet" href="~/css/main.css" />
+    }
+@if (Model != null)
+{
+    @*<div class="">
+        <img src="../img/cp_banner.jpg" alt="" style="width: 100%;height: 100%;">
+    </div>*@
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>
+                    @Model.Name<br />
+                    @if (user != null && !string.IsNullOrEmpty(user.Name))
+                    {
+                        <small>测试者：@user.Name</small>
+                    }
+                    <small>测试时间：@Model.CreateTime.ToString("yyyy-MM-dd")</small>
+                </h3>
+                <div class="alert alert-success">你已经完成本次测评！</div>
+                @if (!string.IsNullOrEmpty(Model.TotalLevelName))
+                {
+                    <p class="">您的测评指数：@Model.TotalScore <small>等级：@Model.TotalLevelName</small></p>
+                }
+                <ul class="nav nav-list">
+                    <li class="divider"></li>
+                </ul>
+                @if (Model.Comment != null && Model.Comment.Count() > 0)
+                {
+                    <h3>测评结果：</h3>
+                    <p class="">
+                        @foreach (string str in Model.Comment)
+                        {
+                            <br> @str
+                        }
+                    </p>
+                    <ul class="nav nav-list">
+                        <li class="divider"></li>
+                    </ul>
+                }
+                @if (!string.IsNullOrEmpty(Model.ResultPic))
+                {
+                    <img src="@Model.ResultPic" width="100%" height="100%" />
+                }
+               @if (Model.Analys != null && Model.Analys.Count() > 0)
+               {
+                <h5 class="text-info">分析说明：</h5>
+                <p class="">
+                    @foreach (string str in Model.Analys)
+                    {
+                        <br />@str
+                    }
+                </p>
+                <hr style="border:1 dashed #987cb9" width="80%" color=#987cb9 SIZE=1>
+               }
+
+                @if (Model.Advice != null && Model.Advice.Count() > 0)
+                {
+                    <h5 class="text-info">指导建议：</h5>
+                    <p class="">
+                        @foreach (string str in Model.Advice)
+                        {
+                            <br />@str
+                        }
+                    </p>
+                            <hr style="border:1 dashed #987cb9" width="80%" color=#987cb9 SIZE=1>
+                }
+
+                @if (drlist != null && drlist.Count > 0)
+                {
+                    <h3>二、维度分析</h3>
+                    if (drlist.Count > 2)
+                    {
+                        <div class="right-container" id="container" style="height: 500px;width: 100%; "></div>
+                    }
+                    <div>
+                        <table class="table">
+                            <caption>各维度说明</caption>
+                            <thead>
+                                <tr>
+                                    <th>维度</th>
+                                    <th>得分</th>
+                                    <th>等级</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DResult dr in drlist)
+                                {
+                                    <tr>
+                                        <td>@dr.DimensionName</td>
+                                        <td>@dr.Score</td>
+                                        <td>@dr.LevelName</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    foreach (DResult drinfo in drlist)
+                    {
+                        <h5 class="text-info"><b>@drinfo.DimensionName</b><small>【@drinfo.Score @drinfo.LevelName】</small></h5>
+                        if (drinfo.DAnalysis != null && drinfo.DAnalysis.Count() > 0)
+                        {
+                            <p>
+                                <br><b><i>维度分析</i></b>
+                                @foreach (string str in drinfo.DAnalysis)
+                                {
+                                    <br />@str
+                                }
+                            </p>
+                        }
+                        if (drinfo.DAdvice != null && drinfo.DAdvice.Count() > 0)
+                        {
+                            <p>
+                                <br><b><i>维度指导建议</i></b>
+                                 @foreach (string str in drinfo.DAdvice)
+                                 {
+                                     <br />@str
+                                 }
+                            </p>
+                        }
+                        <ul class="nav nav-list">
+                            <li class="divider"></li>
+                        </ul>
+                    }
+                }
+                </div>
+            </div>
+      </div>
+}
+else
+{
+    <div class="container">
+
+        <div class="starter-template">
+            <h1>您还没做测评</h1>
+            <p class="lead">请您先做测评</p>
+        </div>
+
+    </div><!-- /.container -->
+}
+
+<!--推荐测评-->
+<div class="weui-tab">
+    <div class="weui-tab__panel">
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__hd panelhd"><img src="~/Content/images/rectangles2.png" class="leftcs" />&nbsp;&nbsp;<span class="titltcs">推荐测评</span><a href="/Psychtest/Index" class="panelhda fontcolor">更多测评&nbsp;></a></div>
+            @*@Html.Action("RecommendPsychtestBuy")*@
+            @Html.Action("RecommendPsychtest", "Psychtest", null)
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/echarts.js"></script>
+<script type="text/javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var indicators = @Html.Raw(ViewBag.indicator);
+    var scorelist = @Html.Raw(ViewBag.scorelist);
+    var app = {};
+    option = null;
+    option = {
+        title: {
+            text: '维度分析图'
+        },
+        tooltip: {},
+        legend: {
+            data: ['各因子维度分析']
+        },
+        radar: {
+            // shape: 'circle',
+            indicator: indicators
+        },
+        series: [{
+            name: '维度得分',
+            type: 'radar',
+            // areaStyle: {normal: {}},
+            data: [
+                {
+                    value: scorelist,
+                    name: '维度得分'
+                }
+            ]
+        }]
+    };;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+
+@section scripts{
+    <script type="text/javascript">
+    define = null;
+    require = null;
+    </script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    @Scripts.Render("~/bundles/wechart")
+    <script type="text/javascript">
+            function GetWeiXinJsapiConfig() {
+                var url = encodeURIComponent(location.href);
+                var link = 'http://open.bnuxq.com/EvaluationResultView/Index?erid=@(Model.ID)'
+                $.get("/WeixinRedirect/jssignature?url=" + url, function (data) {
+                    wx.config({
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: data['appid'], // 必填，公众号的唯一标识
+                        timestamp: data['timestamp'], // 必填，生成签名的时间戳
+                        nonceStr: data['noncestr'], // 必填，生成签名的随机串
+                        signature: data['signature'], // 必填，签名，见附录1
+                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone','chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    });
+                    wx.ready(function () {
+                        //分享到朋友圈
+                        wx.onMenuShareTimeline({
+                            title: '@(user.Name)的心理测评报告', // 分享标题
+                            desc: '@Model.Name', // 分享描述
+                            link: link, // 分享链接
+                            imgUrl: '@Model.PsychtestPic', // 分享图标
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                        //分享给朋友
+                        wx.onMenuShareAppMessage({
+                            title: '@(user.Name)的心理测评报告', // 分享标题
+                            desc: '@Model.Name', // 分享描述
+                            link: link, // 分享链接
+                            imgUrl: '@Model.PsychtestPic', // 分享图标
+                            type: '', // 分享类型,music、video或link，不填默认为link
+                            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                        //分享到QQ
+                        wx.onMenuShareQQ({
+                            title: '@(user.Name)的心理测评报告', // 分享标题
+                            desc: '@Model.Name', // 分享描述
+                            link: link, // 分享链接
+                            imgUrl: '@Model.PsychtestPic', // 分享图标
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                        //分享到腾讯微博
+                        wx.onMenuShareWeibo({
+                            title: '@(user.Name)的心理测评报告', // 分享标题
+                            desc: '@Model.Name', // 分享描述
+                            link: link, // 分享链接
+                            imgUrl: '@Model.PsychtestPic', // 分享图标
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                        //分享到QQ空间
+                        wx.onMenuShareQZone({
+                            title: '@(user.Name)的心理测评报告', // 分享标题
+                            desc: '@Model.Name', // 分享描述
+                            link: link, // 分享链接
+                            imgUrl: '@Model.PsychtestPic', // 分享图标
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                    });
+                    wx.error(function (res) {
+                        // alert("err" + res);
+                    });
+                });
+            }
+
+    $(function () {
+        GetWeiXinJsapiConfig();
+    });
+    </script>
+}

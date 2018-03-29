@@ -1,0 +1,9 @@
+11:13:24.3675637 >DEBUG> clearlogs/Start > 日志清理开始
+11:13:26.8302092 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+11:13:27.8318774 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+14:18:15.9658373 >DEBUG> clearlogs/Start > 日志清理开始
+14:18:25.7212508 >ERROR> http://localhost:47365/AdminCore/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis

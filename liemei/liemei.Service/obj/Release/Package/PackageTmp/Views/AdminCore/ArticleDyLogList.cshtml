@@ -1,0 +1,91 @@
+﻿@using bnuxq.Common
+@using bnuxq.Common.common
+@using bnuxq.Model
+@model IList<bnuxq.Model.ArticleDyLog>
+
+@{
+    Layout = null;
+    List<UserInfo> userlist = ViewBag.userlist as List<UserInfo>;
+
+    List<ArticleRewardLog> arloglist = ViewBag.arloglist;
+
+    List<ArticleComment> aclist = ViewBag.aclist;
+}
+@if (Model != null)
+{
+    foreach (var ad in Model)
+    {
+        string headimg = FileHelper.GetHeadimgurl();
+        var user = userlist.FirstOrDefault(x => x.ID == ad.UserID);
+        if (user != null && !string.IsNullOrEmpty(user.Headimgurl))
+        {
+            headimg = user.Headimgurl;
+        }
+
+        int money = 0;
+        if (ad.LogType == bnuxq.Model.EnumModel.ArticleDyLogType.Buy && arloglist != null)
+        {
+            var arlog = arloglist.FirstOrDefault(x => x.ID == ad.RewardID);
+            money = arlog.Money.TryToInt(0);
+        }
+        string comment = string.Empty;
+        if (ad.LogType == bnuxq.Model.EnumModel.ArticleDyLogType.Comment && aclist != null)
+        {
+            var ac = aclist.FirstOrDefault(x => x.ID == ad.CommentID);
+            comment = ac.CommentStr;
+        }
+        switch (ad.LogType)
+        {
+            case bnuxq.Model.EnumModel.ArticleDyLogType.Buy:
+                <li class="clearfix">
+                    <a href="#" class="p-wzdt-l">
+                        <img src="@headimg" alt="">
+                    </a>
+                    <div class="p-wzdt-r clearfix">
+                        <p>@(ad.UserName)打赏了你的文章【@(ad.ArticleTitle)】</p>
+                        <div class="p-wzdt-btn cp-money">
+                            <var class="wzdt-money">@money</var>&nbsp;<em class="wzdt-money">&yen;</em>
+                            <span class="wzdt-date">@ad.CreateTime.ToString("yyyy-MM-dd")</span>
+                        </div>
+                    </div>
+                </li>
+                break;
+            case bnuxq.Model.EnumModel.ArticleDyLogType.Comment:
+                <li class="clearfix">
+                    <a href="#" class="p-wzdt-l">
+                        <img src="images/wzdt-01.png" alt="">
+                    </a>
+                    <div class="p-wzdt-r clearfix">
+                        <p>@(ad.UserName)评论了你的文章【@(ad.ArticleTitle)】</p>
+                        <div class="p-wzdt-hf">
+                            <em>@(ad.UserName)：</em><var>:</var><span>@comment</span>
+                        </div>
+                        <div class="p-wzdt-btn">
+                            @*<a href="##" class="wzdt-btn01">回复</a>*@
+                            <span>@ad.CreateTime.ToString("yyyy-MM-dd")</span>
+                        </div>
+                    </div>
+                </li>
+                break;
+            case bnuxq.Model.EnumModel.ArticleDyLogType.Share:
+                <li class="clearfix">
+                    <a href="#" class="p-wzdt-l">
+                        <img src="@headimg" alt="">
+                    </a>
+                    <div class="p-wzdt-r">
+                        <p>@(ad.UserName)分享了你的文章【@(ad.ArticleTitle)】</p>
+                        <div class="p-wzdt-btn">
+                            <span>@ad.CreateTime.ToString("yyyy-MM-dd")</span>
+                        </div>
+                    </div>
+                </li>
+                break;
+        }
+    }
+}
+else
+{
+    <li class="null-box">
+        <p>暂时没有动态</p>
+    </li>
+}

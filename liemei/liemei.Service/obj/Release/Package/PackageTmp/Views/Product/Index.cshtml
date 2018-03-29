@@ -1,0 +1,59 @@
+﻿@model List<bnuxq.Model.Product>
+
+@{
+    ViewBag.Title = ViewBag.TitleStr;
+    Layout = "~/Views/Shared/_weChatLayout.cshtml";
+}
+<div>
+    <!--轮播开始-->
+    @if (Model != null)
+    {
+        <div id="myCarousel" class="carousel slide">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    string active = string.Empty;
+                    if (i == 0)
+                    {
+                        active = "active";
+                    }
+                    <li data-target="#myCarousel" data-slide-to="@i" class="@(active)"></li>
+                }
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    string active = string.Empty;
+                    if (i == 0)
+                    {
+                        active = "active";
+                    }
+                    <div class="item @(active)">
+                        <a href="/Product/ProductInfo?id=@Model[i].ID"><img src="@Model[i].MainPic" alt="First slide"></a>
+                        <div class="carousel-caption">@Model[i].Name</div>
+                    </div>
+                }
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                &lsaquo;
+            </a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                &rsaquo;
+            </a>
+        </div>
+    }
+    <!--轮播结束-->
+
+    <!--产品-->
+    <h3 class="">@ViewBag.TitleStr</h3>
+    <div class="container soft">
+        @Html.Action("ProductList",new { type= ViewBag.Ptype })
+    </div>   
+    <!--产品-->
+</div>
+<script>
+
+</script>

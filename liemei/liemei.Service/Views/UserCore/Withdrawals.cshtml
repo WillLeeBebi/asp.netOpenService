@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "申请提现";
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+}
+<div class="form_title">
+    <h2>申请提现</h2>
+</div>
+<div class="formdiv">
+    <form action="/UserCore/WithdrawalsOrder" method="post" id="withform">
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">提现金额</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入金额" name="total_fee" />
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells__tips">提现金额最小为100元，满100元可提现，仅支持微信实名认证用户</div>
+        <div class="weui-btn-area">
+            <button type="submit" class="weui-btn weui-btn_primary">确定</button>
+        </div>
+    </form>
+</div>
+@section scripts{
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.form.js"></script>
+    <script type="text/javascript">
+        $("#withform").validate({
+            rules: {
+                total_fee: {
+                    required: true,
+                    number:true,
+                    min: 100
+                }
+            },
+            messages: {
+                total_fee: {
+                    required: "请输入提现金额",
+                    number:"请输入数字",
+                    min: "金额最小为100"
+                }
+            }
+        });
+    </script>
+}
+

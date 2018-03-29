@@ -1,0 +1,196 @@
+﻿@using bnuxq.Common.common
+@using bnuxq.Model
+@model bnuxq.Model.Psychtest
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+    IList<PsychtestTopic> ptopic = (IList<PsychtestTopic>)ViewBag.ptopic;
+    IList<PsychtestOption> poption = (IList<PsychtestOption>)ViewBag.poption;
+    int hours = Model.TestTime/60;
+    int min = Model.TestTime-(hours*60);
+    PsychtestUser puser = ViewBag.puser;
+    int item = 0;
+    int rat = 1;
+    int indextop = ViewBag.indextop;
+    int Alltopcount = ViewBag.Alltopcount;
+    if (indextop>0 && Alltopcount!=0)
+    {
+        rat = indextop / Alltopcount;
+    }
+    if (rat == 0)
+    {
+        rat = 1;
+    }
+}
+
+<div class="weui-flex process">
+    <div class="weui-flex__item ">
+        <div class="weui-progress">
+            <span id="tindex">@(ViewBag.indextop)</span><span>/@(ViewBag.Alltopcount)</span>
+            <div class="weui-progress__bar process_main">
+                <div class="weui-progress__inner-bar js_progress" style="width: @(rat)%;"></div>
+            </div>
+            <div class="process_time">
+                还剩：<span id="hour">@(hours)</span>:<span id="minute">@(min)</span>:<span id="second">00</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@foreach (var topic in ptopic)
+{
+    var oplist = from o in poption
+                 where o.PsychtestTopicID == topic.ID
+                 orderby o.OptionNumber
+                 select o;
+
+    <div class="process_content  @(item==0?"":"process_content_show")" id="@(item)" data-id="@(topic.ID)">
+        <div class="weui-cells__title"><p>@(topic.TopicNumber).
+            @if (topic.Content.StartsWith("http:"))
+            {
+                <img src="@(topic.Content)" width="250px" />
+            }
+            else
+            {
+                string content = topic.Content;
+                string imgurl = string.Empty;
+                if (topic.Content.Contains("|"))
+                {
+                    string[] sp = topic.Content.Split('|');
+                    if (sp!=null && sp.Length>1)
+                    {
+                        content = sp[0];
+                        imgurl = sp[1];
+                    }
+                }
+                <span>
+            @content
+                    @if (!imgurl.IsNull())
+                    {
+                        <img src="@(imgurl)" width="250px" />
+                    }
+                </span>
+            }
+            </p></div>
+        <div class="weui-cells weui-cells_radio">
+            @foreach (var op in oplist)
+            {
+                <label class="weui-cell weui-check__label" for="@(op.ID)" onclick="checked('@(topic.ID)','@(op.OptionNumber)','@(item)')">
+                    <div class="weui-cell__bd">
+                        <p>@(op.OptionNumber)、
+                        @if (op.Content.StartsWith("http"))
+                        {
+                            <img src="@op.Content" width="100px" />
+                        }
+                        else
+                        {
+                            <span>@op.Content</span>
+                        }
+                        </p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <input type="radio" class="weui-check" id="@(op.ID)" />
+                        <span class="weui-icon-checked"></span>
+                    </div>
+                </label>
+            }
+            
+        </div>
+    </div>
+    item++;
+}
+
+<!-- 蒙版 -->
+<div id="loadingToast" style="display:none;">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+        <i class="weui-loading weui-icon_toast"></i>
+        <p class="weui-toast__content">报告生成中</p>
+    </div>
+</div>
+<div id="loading" style="display:none;">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+        <i class="weui-loading weui-icon_toast"></i>
+        <p class="weui-toast__content">加载中</p>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var arrayItem = new Array();
+        function checked(topicID, optionNumber, item) {
+           
+            var result = $.inArray(item, arrayItem)
+            if (result < 0)
+            {
+                arrayItem.push(item)
+                
+                $("#loading").show();
+                $.ajax({
+                    url: "/Psychtest/AddPsychtestUserOption",
+                    data: {
+                        ptestUserid:'@(puser.ID)',
+                        optionNumber:optionNumber,
+                        topicID:topicID
+                    },
+                    method:"POST",
+                    dataType:"json",
+                    success: function (result, status) {
+                        topcount = Number('@(ptopic.Count)');
+                        var next = Number(item) + 1
+                        console.log(next+":---------")
+                        var rat = (next / topcount) * 100
+                        console.log(rat+'%')
+                        $(".weui-progress__inner-bar").css("width", rat+"%")
+                        if (next < topcount)
+                        {
+                            $("#" + item).addClass("process_content_show");
+                            $("#" + next).removeClass("process_content_show");
+                            $("#tindex").html(next);
+                        }
+                        $("#loading").hide();
+                        if (next == topcount) {
+                            $("#loadingToast").show();
+                            $.get("/Psychtest/PsychtestUserEnd?ptestUserid=@(puser.ID)",function(success){
+                                if(success.code=="OK"){
+                                    location.href='/EvaluationResultView/Index?erid='+success.id;
+                                }
+                            }, 'json');
+                        }
+                    }
+                });
+            }
+        }
+
+        function timeDown() {
+            var setin = window.setInterval(function () {
+                var ohour = parseInt($('#hour').html());
+                var omin = parseInt($('#minute').html());
+                var osec = parseInt($('#second').html());
+                if (osec > 0) {
+                    osec--;
+                    $('#second').html(osec);
+                } else {
+                    if (omin > 0) {
+                        omin--;
+                        $('#minute').html(omin);
+                        $('#second').html(59);
+                    } else {
+                        if (ohour > 0) {
+                            ohour--;
+                            $('#hour').html(ohour);
+                            $('#minute').html(59);
+                            $('#second').html(59);
+                        } else {
+                            window.clearInterval(setin)
+                        }
+                    }
+                }
+            }, 1000);
+        }
+        timeDown();
+    </script>
+    }

@@ -1,0 +1,14 @@
+﻿/*产品*/
+ .soft img{
+ 	/*width: 225px; 
+ 	height: 161px;*/
+ 	border: 2px solid #f6f6f6;
+ }
+/* 清除列表样式 */
+dl,ul,ol,menu,li{list-style:none} /* 重置类表前导符号为onne,menu在HTML5中有效 */
+/*新闻动态列表*/
+
+/**a标签中图片宽度*/
+a img {
+    width:100%
+}

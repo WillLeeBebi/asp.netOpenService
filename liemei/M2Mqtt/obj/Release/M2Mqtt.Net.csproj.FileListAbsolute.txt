@@ -1,0 +1,10 @@
+D:\Code\Net\bnuxq\bnuxq\bin\Release\M2Mqtt.Net\M2Mqtt.Net.dll
+D:\Code\Net\bnuxq\bnuxq\bin\Release\M2Mqtt.Net\M2Mqtt.Net.pdb
+D:\Code\Net\bnuxq\bnuxq\M2Mqtt\obj\Release\M2Mqtt.Net.dll
+D:\Code\Net\bnuxq\bnuxq\M2Mqtt\obj\Release\M2Mqtt.Net.pdb
+D:\Code\Net\bnuxq\bnuxq\M2Mqtt\obj\Release\M2Mqtt.Net.csprojResolveAssemblyReference.cache
+D:\Code\Net\bnuxqtest\bnuxq\bnuxq\bin\Release\M2Mqtt.Net\M2Mqtt.Net.dll
+D:\Code\Net\bnuxqtest\bnuxq\bnuxq\bin\Release\M2Mqtt.Net\M2Mqtt.Net.pdb
+D:\Code\Net\bnuxqtest\bnuxq\bnuxq\M2Mqtt\obj\Release\M2Mqtt.Net.csprojResolveAssemblyReference.cache
+D:\Code\Net\bnuxqtest\bnuxq\bnuxq\M2Mqtt\obj\Release\M2Mqtt.Net.dll
+D:\Code\Net\bnuxqtest\bnuxq\bnuxq\M2Mqtt\obj\Release\M2Mqtt.Net.pdb

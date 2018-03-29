@@ -1,0 +1,27 @@
+16:35:31.1481285 >DEBUG> clearlogs/Start > 日志清理开始
+16:40:41.3609511 >ERROR> ArticleDal.AddArticle > Begin failed with SQL exception,NHibernate
+16:40:42.3623147 >ERROR> UserInfoDal.UserLogin > Begin failed with SQL exception,NHibernate
+16:41:06.3279742 >ERROR> ArticleDal.AddArticle > Begin failed with SQL exception,NHibernate
+16:41:07.3285053 >ERROR> UserInfoDal.UserLogin > Begin failed with SQL exception,NHibernate
+16:41:11.3039600 >ERROR> ArticleDal.AddArticle > Begin failed with SQL exception,NHibernate
+16:41:12.3048873 >ERROR> UserInfoDal.UserLogin > Begin failed with SQL exception,NHibernate
+16:41:42.8961600 >ERROR> ArticleDal.AddArticle > Begin failed with SQL exception,NHibernate
+16:41:43.9016259 >ERROR> UserInfoDal.UserLogin > Begin failed with SQL exception,NHibernate
+16:42:12.3568462 >ERROR> UserInfoDal.UserLogin > Begin failed with SQL exception,NHibernate
+16:42:13.3575840 >ERROR> ArticleDal.AddArticle > Begin failed with SQL exception,NHibernate
+16:43:21.5634826 >ERROR> ArticleDal.AddArticle > Begin failed with SQL exception,NHibernate
+16:43:22.9178811 >ERROR> UserInfoDal.UserLogin > Begin failed with SQL exception,NHibernate
+16:45:04.8026368 >DEBUG> clearlogs/Start > 日志清理开始
+16:58:59.2427195 >ERROR> PsychtestUserDal.GetByID > id to load is required for loading
+参数名: entityId,NHibernate
+17:08:41.5561466 >ERROR> PsychtestUserDal.GetByID > id to load is required for loading
+参数名: entityId,NHibernate
+17:09:47.7146605 >ERROR> http://localhost:47365/api/psychtest/groupreport发生异常 > 未将对象引用设置到对象的实例。,bnuxq.Service
+17:10:12.1746803 >ERROR> PsychtestUserDal.GetByID > id to load is required for loading
+参数名: entityId,NHibernate
+17:15:01.3294363 >DEBUG> clearlogs/Start > 日志清理开始
+17:15:23.5877226 >ERROR> PsychtestUserDal.GetByID > id to load is required for loading
+参数名: entityId,NHibernate
+17:16:12.1197132 >ERROR> http://localhost:47365/api/psychtest/groupreport发生异常 > 未将对象引用设置到对象的实例。,bnuxq.Service
+17:16:38.1918848 >ERROR> PsychtestUserDal.GetByID > id to load is required for loading
+参数名: entityId,NHibernate

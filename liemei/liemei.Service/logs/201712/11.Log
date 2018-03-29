@@ -1,0 +1,71 @@
+11:00:22.2188383 >DEBUG> clearlogs/Start > 日志清理开始
+11:00:24.8105698 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+11:00:25.8122393 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+11:00:26.8139082 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+11:03:00.5086117 >DEBUG> clearlogs/Start > 日志清理开始
+11:03:04.7694586 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+11:03:05.7711277 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_ FROM PsychtestType this_],NHibernate
+11:03:06.8368397 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+11:28:50.4243913 >DEBUG> clearlogs/Start > 日志清理开始
+11:29:06.5921942 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+11:29:20.6285734 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_, this_.Testtype as Testt3_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_, this_.Testtype as Testt3_30_0_ FROM PsychtestType this_],NHibernate
+11:31:24.4112888 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_, this_.Testtype as Testt3_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_, this_.Testtype as Testt3_30_0_ FROM PsychtestType this_],NHibernate
+11:31:30.4213052 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+11:35:33.9785276 >DEBUG> clearlogs/Start > 日志清理开始
+11:36:15.4742555 >ERROR> PsychtestDal.GetByPsychtestTypeID > could not execute query
+[ select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1 ]
+[SQL: select count(*) as col_0_0_ from Psychtest psychtest0_ where psychtest0_.PsychtestState=1],NHibernate
+11:37:05.1724657 >ERROR> PsychtestTypeDal.GetALL > could not execute query
+[ SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_, this_.Testtype as Testt3_30_0_ FROM PsychtestType this_ ]
+[SQL: SELECT this_.ID as ID1_30_0_, this_.TypeName as TypeN2_30_0_, this_.Testtype as Testt3_30_0_ FROM PsychtestType this_],NHibernate
+11:37:18.8696178 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > 值不能为 null。
+参数名: source,System.Core
+11:39:39.4835789 >DEBUG> clearlogs/Start > 日志清理开始
+11:47:42.8115582 >DEBUG> clearlogs/Start > 日志清理开始
+13:23:07.8124086 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > 索引超出范围。必须为非负值并小于集合大小。
+参数名: index,mscorlib
+13:23:40.3161286 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > 索引超出范围。必须为非负值并小于集合大小。
+参数名: index,mscorlib
+13:25:14.9083376 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > 索引超出范围。必须为非负值并小于集合大小。
+参数名: index,mscorlib
+13:25:55.9637710 >DEBUG> clearlogs/Start > 日志清理开始
+13:27:00.5789072 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > 索引超出范围。必须为非负值并小于集合大小。
+参数名: index,mscorlib
+13:41:02.5365211 >DEBUG> clearlogs/Start > 日志清理开始
+15:38:22.6794178 >DEBUG> clearlogs/Start > 日志清理开始
+15:54:13.4196104 >DEBUG> clearlogs/Start > 日志清理开始
+15:54:20.9436382 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+15:55:20.3563392 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+16:04:52.5016590 >DEBUG> clearlogs/Start > 日志清理开始
+16:05:02.6704536 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > 未将对象引用设置到对象的实例。,App_Web_uhlzfv50
+16:06:51.4071140 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+16:06:52.4097834 >ERROR> http://localhost:47365/Psychtest/Index发生异常 > 执行处理程序“System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper”的子请求时出错。,System.Web
+16:23:43.9862494 >DEBUG> clearlogs/Start > 日志清理开始
+17:02:03.7021298 >DEBUG> clearlogs/Start > 日志清理开始
+17:18:54.4475324 >DEBUG> clearlogs/Start > 日志清理开始
+17:19:01.5752939 >ERROR> http://localhost:47365/Article/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+17:19:05.9672282 >ERROR> http://localhost:47365/Article/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+17:19:14.9852551 >ERROR> http://localhost:47365/Article/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+17:19:19.4172159 >ERROR> http://localhost:47365/Article/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+17:19:46.7995146 >ERROR> http://localhost:47365/Article/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+17:20:12.5257039 >ERROR> http://localhost:47365/Article/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+17:20:58.8366508 >DEBUG> clearlogs/Start > 日志清理开始
+17:21:00.8990285 >ERROR> http://localhost:47365/Article/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+17:22:30.2167118 >DEBUG> clearlogs/Start > 日志清理开始
+17:22:32.1019715 >ERROR> http://localhost:47365/Article/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis
+17:24:10.8609654 >DEBUG> clearlogs/Start > 日志清理开始
+17:24:25.8759983 >ERROR> http://localhost:47365/Article/Index发生异常 > could not connect to redis Instance at 127.0.0.1:6379,ServiceStack.Redis

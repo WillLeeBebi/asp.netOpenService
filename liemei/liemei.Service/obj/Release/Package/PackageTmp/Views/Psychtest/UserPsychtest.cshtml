@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "我的测评";
+    Layout = "~/Views/Shared/_userLayout.cshtml";
+}
+<div id="wzdt-box">
+    <h5 class="p-wzdt-t">我创建的测评</h5>
+    <ul class="p-wzdt-c">
+        @Html.Action("UserCreatePsychatest")
+    </ul>
+    <div class="gl-more">
+        <a href="/Psychtest/UserPsychTestMore?pageIndex=1&type=1">更多动态</a>
+    </div>
+</div>
+<div id="wzdt-box">
+    <h5 class="p-wzdt-t">我分享的测评</h5>
+    <ul class="p-wzdt-c">
+        @Html.Action("UserSharePsychatest")
+    </ul>
+    <div class="gl-more">
+        <a href="/Psychtest/UserPsychTestMore?pageIndex=1&type=0">更多动态</a>
+    </div>
+</div>

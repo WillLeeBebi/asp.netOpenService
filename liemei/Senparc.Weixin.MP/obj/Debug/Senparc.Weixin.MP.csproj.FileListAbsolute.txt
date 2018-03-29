@@ -1,0 +1,5 @@
+D:\Code\Net\bnuxq\Senparc.Weixin.MP.BuildOutPut\Senparc.Weixin.MP.dll
+D:\Code\Net\bnuxq\Senparc.Weixin.MP.BuildOutPut\Senparc.Weixin.MP.pdb
+D:\Code\Net\bnuxq\bnuxq\Senparc.Weixin.MP\obj\Debug\Senparc.Weixin.MP.csprojResolveAssemblyReference.cache
+D:\Code\Net\bnuxq\bnuxq\Senparc.Weixin.MP\obj\Debug\Senparc.Weixin.MP.dll
+D:\Code\Net\bnuxq\bnuxq\Senparc.Weixin.MP\obj\Debug\Senparc.Weixin.MP.pdb

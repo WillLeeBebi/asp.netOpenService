@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/weui.min.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    @RenderSection("cssfile", required: false)
+</head>
+
+<body>
+    <!--
+            作者：liushuaichao159@163.com
+            时间：2017-12-04
+            描述：导航开始
+        -->
+    @*<nav class="nav">
+        <img href="" />
+        <a href="javascript:;" class="back">心企领航测评</a>
+    </nav>*@
+
+    <!--内容-->
+    @RenderBody()
+
+    <!--
+            作者：liushuaichao159@163.com
+            时间：2017-12-04
+            描述：footer
+        -->
+    <div class="weui-footer">
+        <p class="weui-footer__links">
+            <a href="javascript:void(0);" class="weui-footer__link">北京心企领航科技有限公司</a>
+        </p>
+        <p class="weui-footer__text">Copyright &copy; @DateTime.Now.Year</p>
+    </div>
+
+    <script src="~/js/jquery3.2.0.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

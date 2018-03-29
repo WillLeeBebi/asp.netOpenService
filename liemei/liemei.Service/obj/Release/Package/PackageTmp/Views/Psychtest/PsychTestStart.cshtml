@@ -1,0 +1,91 @@
+﻿@using bnuxq.Common.common
+@model bnuxq.Model.Psychtest
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_weChartLayoutNew.cshtml";
+}
+<div class="weui-flex">
+    <div class="weui-flex__item article_banner">
+        <div class="placeholder"><img src="@Model.PsychtestPic"></div>
+    </div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item">
+        <div class="placeholder article_name">
+            <h3>@Model.Name</h3>
+        </div>
+    </div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item"><div class="placeholder article_title"><small>@Model.Title</small></div></div>
+</div>
+<div class="weui-flex">
+    <div><div class="placeholder"></div></div>
+    <div class="weui-flex__item "><div class="placeholder article_item_title"><span>指导说明</span></div></div>
+    <div><div class="placeholder"></div></div>
+</div>
+<div class="weui-flex">
+    <div><div class="placeholder"></div></div>
+    <div class="weui-flex__item ">
+        <div class="article_suj">
+            <p>@Model.Guidance</p>
+        </div>
+    </div>
+    <div><div class="placeholder"></div></div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item"><div class="placeholder article_buy"><a href="/Psychtest/PsychTestprocess?ptestUserid=@(ViewBag.ptestUserid)" class="weui-btn weui-btn_mini weui-btn_primary">立即测试</a></div></div>
+</div>
+<div class="weui-flex">
+    <div><div class="placeholder"></div></div>
+    <div class="weui-flex__item article_item_msg"><div class="placeholder article_item_title"><span>测试须知</span></div></div>
+    <div><div class="placeholder"></div></div>
+</div>
+<div class="weui-flex">
+    <div><div class="placeholder"></div></div>
+    <div class="weui-flex__item article_item_msg">
+        <div class="placeholder">
+            @if (Model.PsychtestType == bnuxq.Model.EnumModel.PsychtestPrTypeEnum.Specialty)
+            {
+                <p>
+                    <i class="weui-icon-info-circle"></i>
+                    本测评为付费测试,体验价为@(Model.Price.TryToDouble())元
+                </p>
+                <p>
+                    <i class="weui-icon-info-circle"></i>
+                    测试题：@(ViewBag.topicCount)题，测试时间：约@(Model.TestTime)分钟
+                </p>
+                <p>
+                    <i class="weui-icon-info-circle"></i>
+
+                    本测评不能重复测试，答题结束后会形成一份专业的测评报告，请您根据自己的实
+                    际情况作答
+                </p>
+                <p>
+                    <i class="weui-icon-info-circle"></i>
+                    由于题目数量较多，在付费成功后，跳转页面可能需要时间进行加载，请耐心等候
+                    （建议在网络较好的情况下进行测试）
+                </p>
+            }
+            else
+            {
+                <p>
+                    <i class="weui-icon-info-circle"></i>
+                    本测评为趣味测评，仅供娱乐，千万别认真，你认真就输了
+                </p>
+            }
+
+        </div>
+
+    </div>
+    <div><div class="placeholder"></div></div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item "><div class="placeholder article_item_title"><span>推荐测评</span></div></div>
+</div>
+<div class="weui-flex">
+    <div class="weui-flex__item">
+        @Html.Action("RecommendPsychtestBuy")
+    </div>
+</div>

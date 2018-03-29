@@ -1,0 +1,59 @@
+{
+  "button": [
+    {
+      "name": "xxx",
+      "sub_button": [
+        {
+          "type": "view",
+          "name": "xxx",
+          "url": "http://xxx/xxx.html"
+        },
+        {
+          "type": "view",
+          "name": "xxxx",
+          "url": "http://xxx/xxx.html"
+        },
+        {
+          "type": "view",
+          "name": "xxx",
+          "url": "http://xxx/xxxx.html"
+        }
+      ]
+    },
+    {
+      "name": "xxxxx",
+      "sub_button": [
+        {
+          "type": "view",
+          "name": "xxx",
+          "url": "http://xxxx?type=0"
+        },
+        {
+          "type": "view",
+          "name": "xxxx",
+          "url": "http://xxx?type=1"
+        }
+      ]
+    },
+    {
+      "name": "xxx",
+      "sub_button": [
+        {
+          "type": "media_id",
+          "name": "xxx",
+          "media_id": "ibIX-xxxxx"
+        },
+        {
+          "type": "view",
+          "name": "个人中心",
+          "url": "http://xxxx/Index?type=UserCore"
+        },
+        {
+          "type": "view",
+          "name": "xxxx",
+          "url": "http://xxxxIndex"
+        }
+      ]
+    }
+  ]
+}
