@@ -11,6 +11,7 @@
    - 6、常用的c#帮助类库封装，如http、file、img、异步、扩展方法,Redis缓存操作等
    - 7、web API框架支持。支持自定义tocken鉴权、支持用户鉴权服务器与资源服务器分离，支持web api接口跨域访问
    - 8、使用Redis自定义session。
+   - 9、随机生成图片验证码API接口、图片验证码校验、短信验证码校验API接口
  
 该项目相关博客文章地址：http://www.cnblogs.com/liemei/default.html?page=2
   
