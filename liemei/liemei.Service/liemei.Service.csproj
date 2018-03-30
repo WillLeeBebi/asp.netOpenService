@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>bnuxq.Service</RootNamespace>
-    <AssemblyName>bnuxq.Service</AssemblyName>
+    <RootNamespace>liemei.Service</RootNamespace>
+    <AssemblyName>liemei.Service</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -428,7 +428,7 @@
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\PublishProfiles\bnuxq.config.pubxml" />
+    <None Include="Properties\PublishProfiles\liemei.config.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\echarts.js" />
     <Content Include="Scripts\iscroll-infinite.js" />
@@ -495,19 +495,19 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\bnuxq.Bll\liemei.Bll.csproj">
+    <ProjectReference Include="..\liemei.Bll\liemei.Bll.csproj">
       <Project>{a3ad1a43-fc2f-4358-88c6-409d6b693a73}</Project>
       <Name>liemei.Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\bnuxq.Common\liemei.Common.csproj">
+    <ProjectReference Include="..\liemei.Common\liemei.Common.csproj">
       <Project>{fe463da6-e520-42d4-881b-33991a03635a}</Project>
       <Name>liemei.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\bnuxq.Model\liemei.Model.csproj">
+    <ProjectReference Include="..\liemei.Model\liemei.Model.csproj">
       <Project>{4c76ef04-f288-40eb-96b0-46985acf0c05}</Project>
       <Name>liemei.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\bnuxq.WeChat\liemei.WeChat.csproj">
+    <ProjectReference Include="..\liemei.WeChat\liemei.WeChat.csproj">
       <Project>{47952D7D-FA2A-4B77-BEAC-CB7029ABA7C1}</Project>
       <Name>liemei.WeChat</Name>
     </ProjectReference>

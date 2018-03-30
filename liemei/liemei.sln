@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.Service", "bnuxq.Service\liemei.Service.csproj", "{127580EF-0CF7-4664-BDAD-70B64A1C389B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.Service", "liemei.Service\liemei.Service.csproj", "{127580EF-0CF7-4664-BDAD-70B64A1C389B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.Model", "bnuxq.Model\liemei.Model.csproj", "{4C76EF04-F288-40EB-96B0-46985ACF0C05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.Model", "liemei.Model\liemei.Model.csproj", "{4C76EF04-F288-40EB-96B0-46985ACF0C05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.Dal", "bnuxq.Dal\liemei.Dal.csproj", "{B315BA5A-5061-4703-91B2-BB834597E318}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.Dal", "liemei.Dal\liemei.Dal.csproj", "{B315BA5A-5061-4703-91B2-BB834597E318}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.Bll", "bnuxq.Bll\liemei.Bll.csproj", "{A3AD1A43-FC2F-4358-88C6-409D6B693A73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.Bll", "liemei.Bll\liemei.Bll.csproj", "{A3AD1A43-FC2F-4358-88C6-409D6B693A73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.Common", "bnuxq.Common\liemei.Common.csproj", "{FE463DA6-E520-42D4-881B-33991A03635A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.Common", "liemei.Common\liemei.Common.csproj", "{FE463DA6-E520-42D4-881B-33991A03635A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2Mqtt.Net", "M2Mqtt\M2Mqtt.Net.csproj", "{A11AEF5A-B246-4FE8-8330-06DB73CC8074}"
 EndProject
@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senparc.Weixin", "Senparc.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senparc.Weixin.MP", "Senparc.Weixin.MP\Senparc.Weixin.MP.csproj", "{1D815FBF-451C-4E23-939C-CB80172F445C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.WeChat", "bnuxq.WeChat\liemei.WeChat.csproj", "{47952D7D-FA2A-4B77-BEAC-CB7029ABA7C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "liemei.WeChat", "liemei.WeChat\liemei.WeChat.csproj", "{47952D7D-FA2A-4B77-BEAC-CB7029ABA7C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

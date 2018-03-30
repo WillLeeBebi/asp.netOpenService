@@ -72,7 +72,7 @@
     <Compile Include="WxPayApi.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\bnuxq.Common\liemei.Common.csproj">
+    <ProjectReference Include="..\liemei.Common\liemei.Common.csproj">
       <Project>{FE463DA6-E520-42D4-881B-33991A03635A}</Project>
       <Name>liemei.Common</Name>
     </ProjectReference>

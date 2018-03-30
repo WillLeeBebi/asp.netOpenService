@@ -7,8 +7,8 @@
     <ProjectGuid>{FE463DA6-E520-42D4-881B-33991A03635A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>bnuxq.Common</RootNamespace>
-    <AssemblyName>bnuxq.Common</AssemblyName>
+    <RootNamespace>liemei.Common</RootNamespace>
+    <AssemblyName>liemei.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
